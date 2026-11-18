@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<a href="{{ href }}" onMouseEnter="{{ enter }}" onMouseLeave="{{ leave }}" onFocus="{{ enter }}" onBlur="{{ leave }}" style="position:relative;transition:transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;transform:{{ lift }};box-shadow:{{ shadow }};overflow:hidden;display:flex;flex-direction:column;height:100%;background:{{ cardBg }};backdrop-filter:{{ cardBlur }};-webkit-backdrop-filter:{{ cardBlur }};color:#fff;text-decoration:none;border:1px solid rgba(255,255,255,0.06)" style-hover="border-color:rgba(192,228,72,0.6);color:#fff">
+  <div style="position:relative;flex:none;width:100%;aspect-ratio:{{ ratio }};overflow:hidden;display:flex;align-items:center;justify-content:center;border-bottom:1px solid rgba(255,255,255,0.12)">
+    <sc-if value="{{ img }}" hint-placeholder-val="{{ false }}"><img src="{{ img }}" alt="{{ imgAlt }}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:{{ fit }};display:block;padding:{{ pad }};background:{{ imgBg }};box-sizing:border-box;transition:transform 0.6s cubic-bezier(.2,.7,.2,1);transform:{{ zoom }}"></sc-if>
+    <sc-if value="{{ cat }}" hint-placeholder-val="{{ false }}"><span style="position:absolute;left:12px;top:12px;z-index:2;display:inline-flex;align-items:center;height:28px;padding:0 12px;border-radius:999px;background:rgba(3,76,48,0.8);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.45);color:#fff;font-size:12px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;white-space:nowrap">{{ cat }}</span></sc-if>
+    <sc-if value="{{ noImg }}" hint-placeholder-val="{{ true }}"><img src="img/flower-white.svg" alt="" style="width:42%;opacity:0.35"></sc-if>
+  </div>
+  <div style="position:relative;padding:20px;display:flex;flex-direction:column;gap:12px;flex:1">
+    <h3 style="margin:0;font-family:'Maven Pro',Arial,sans-serif;font-weight:400;font-size:24px;line-height:1.3;letter-spacing:0.2em;text-transform:uppercase;height:2.6em;flex:none;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden">{{ title }}</h3>
+    <p style="margin:0;font-size:15px;line-height:1.55;color:#ebefea;flex:none;height:4.65em;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden">{{ text }}</p>
+    <div style="margin-top:auto;display:flex;flex-direction:column;gap:12px;padding-top:16px;border-top:1px solid rgba(255,255,255,0.12)">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:8px">
+        <span style="display:flex;flex-direction:column;gap:2px"><span style="font-family:'Maven Pro',Arial,sans-serif;font-weight:500;font-size:18px;letter-spacing:0.06em;color:#c89858">{{ meta }}</span><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#8fbeaa">{{ date }}</span></span>
+        <span aria-hidden="true" style="width:40px;height:40px;border-radius:50%;border:1px solid {{ arrowLine }};background:{{ arrowBg }};color:{{ arrowFg }};display:flex;align-items:center;justify-content:center;font-size:16px;transition:all 0.3s ease;transform:{{ arrowMove }}">→</span>
+      </div>
+    </div>
+  </div>
+</a>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { h: false };
+  renderVals() {
+    const p = this.props, h = this.state.h, gl = !!p.glass;
+    return {
+      cardBg: gl ? 'radial-gradient(ellipse 120% 90% at 50% 30%, rgba(15,108,70,0.85) 0%, rgba(3,76,48,0.85) 55%, rgba(2,58,36,0.85) 100%)' : 'radial-gradient(ellipse 120% 90% at 50% 30%, #0f6c46 0%, #034c30 55%, #023a24 100%)', cardBlur: gl ? 'blur(12px)' : 'none',
+      enter: () => this.setState({ h: true }), leave: () => this.setState({ h: false }),
+      lift: h ? 'translateY(-4px)' : 'none', shadow: h ? '0 14px 30px rgba(2,40,25,0.28)' : 'none', zoom: h ? 'scale(1.06)' : 'scale(1)',
+      arrowLine: h ? '#c0e448' : 'rgba(255,255,255,0.4)', arrowBg: h ? '#c0e448' : 'transparent', arrowFg: h ? '#034c30' : '#fff', arrowMove: h ? 'translateX(4px)' : 'none',
+      href: p.href ?? '#', img: p.img ?? '', ...(() => { const photo = /\.(jpe?g|webp)$/i.test(p.img || ''); const f = p.fit || (photo ? 'cover' : 'line'); return f === 'contain-white' ? { fit: 'contain', pad: '8px', imgBg: '#fff' } : f === 'cover' ? { fit: 'cover', pad: '0', imgBg: 'transparent' } : { fit: 'contain', pad: '12px', imgBg: 'transparent' }; })(), noImg: !p.img, imgAlt: p.imgAlt ?? '', ratio: p.ratio ?? '4/3',
+      title: p.title ?? 'Source home', text: p.text ?? '', pill: p.pill ?? 'dostupno', pillTone: p.pillTone ?? 'dark',
+      date: p.date ?? '', cat: p.cat ?? '', meta: p.meta ?? ''
+    };
+  }
+}
+</script>
+</body>
+</html>

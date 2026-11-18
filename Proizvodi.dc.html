@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>Proizvodi — Source</title>
+<link href="https://fonts.googleapis.com/css2?family=Maven+Pro:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400&amp;display=swap" rel="stylesheet">
+<link rel="icon" href="img/favicon-32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+<script src="site.js"></script>
+<style>
+@keyframes spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion:reduce){img[src$="flower-white.svg"]{animation:none!important}}
+body{margin:0;background:#fff;color:#191b1c;font-family:'Maven Pro',system-ui,sans-serif;font-size:17px;line-height:1.6}
+a{color:#034c30;text-decoration:none}a:hover{color:#206549}*{box-sizing:border-box}
+:focus-visible{outline:2px solid #034c30;outline-offset:2px}
+</style>
+</helmet>
+<div>
+<dc-import name="SiteHeader" active="proizvodi" hint-size="100%,0px"></dc-import>
+<main>
+<section data-screen-label="Hero" style="background:radial-gradient(ellipse 90% 120% at 50% 40%, #0f6c46 0%, #034c30 55%, #023a24 100%);color:#fff;position:relative;overflow:hidden">
+  <img src="img/flower-white.svg" alt="" style="position:absolute;right:-200px;top:-180px;width:560px;opacity:0.15;pointer-events:none;animation:spin 120s linear infinite">
+  <div style="position:relative;max-width:1200px;margin:0 auto;padding:88px 16px 48px;display:flex;flex-direction:column;gap:16px">
+    <dc-import name="Breadcrumbs" items="{{ crumbs }}" hint-size="100%,32px"></dc-import>
+    <h1 style="margin:0;font-family:'Maven Pro',Arial,sans-serif;font-weight:400;font-size:clamp(32px,6vw,52px);letter-spacing:0.33em;text-transform:uppercase">{{ t.h1 }}</h1>
+    <p style="margin:0;max-width:36em;color:#ebefea">{{ t.intro }}</p>
+  </div>
+</section>
+<section data-screen-label="Grid" style="background:#ebefea;overflow:hidden;position:relative;isolation:isolate">
+  <div aria-hidden="true" style="position:absolute;inset:0;z-index:-1;pointer-events:none;background-image:url(img/bg-k-c01-torus-g.png);background-repeat:no-repeat;background-attachment:fixed;background-size:auto 100vh;background-position:left top;-webkit-mask-image:linear-gradient(-45deg, transparent 15%, #000 70%);mask-image:linear-gradient(-45deg, transparent 15%, #000 70%)"></div>
+  <div style="max-width:1200px;margin:0 auto;padding:40px 16px 72px;display:flex;flex-direction:column;gap:20px">
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,320px),1fr));gap:20px">
+      <sc-for list="{{ items }}" as="p" hint-placeholder-count="6"><dc-import name="Card" style="height:100%" href="{{ p.href }}" img="{{ p.img }}" img-alt="{{ p.imgAlt }}" fit="{{ p.fit }}" title="{{ p.title }}" text="{{ p.text }}" meta="{{ p.meta }}" hint-size="100%,500px"></dc-import></sc-for>
+    </div>
+  </div>
+</section>
+<section data-screen-label="FAQ" style="background:#fff;overflow:hidden;position:relative;isolation:isolate">
+  <div aria-hidden="true" style="position:absolute;inset:0;z-index:-1;pointer-events:none;background-image:url(img/bg-k-b08-aura-torus-g.png);background-repeat:no-repeat;background-attachment:fixed;background-size:auto 100vh;background-position:right top;-webkit-mask-image:linear-gradient(45deg, transparent 15%, #000 70%);mask-image:linear-gradient(45deg, transparent 15%, #000 70%)"></div>
+  <div style="max-width:1200px;margin:0 auto;padding:64px 16px 72px;display:flex;flex-direction:column;gap:24px">
+    <dc-import name="SectionTitle" title="{{ t.faq }}" hint-size="100%,48px"></dc-import>
+    <div style="display:flex;flex-direction:column;border-top:1px solid #659682">
+      <sc-for list="{{ faq }}" as="f" hint-placeholder-count="4">
+        <div style="border-bottom:1px solid #659682">
+          <h3 style="margin:0">
+            <button onClick="{{ f.toggle }}" aria-expanded="{{ f.open }}" aria-controls="{{ f.id }}" style="width:100%;background:none;border:0;padding:12px 0;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;min-height:60px;text-align:left;font-family:'Maven Pro',system-ui,sans-serif;font-size:18px;font-weight:500;color:#034c30">{{ f.q }}<span aria-hidden="true" style="flex:none;width:32px;height:32px;border-radius:50%;border:1px solid #034c30;display:flex;align-items:center;justify-content:center;transition:transform 0.3s ease, background 0.3s ease;transform:{{ f.rot }};background:{{ f.chevBg }};color:{{ f.chevFg }}"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"></path></svg></span></button>
+          </h3>
+          <div id="{{ f.id }}" role="region" style="display:grid;grid-template-rows:{{ f.rows }};opacity:{{ f.op }};transition:grid-template-rows 0.3s ease, opacity 0.3s ease">
+            <div style="overflow:hidden">
+              <div style="padding:0 0 20px;display:flex;flex-direction:column;gap:6px">
+                <p style="margin:0;max-width:40em">{{ f.a }}</p>
+                <sc-if value="{{ f.confirm }}" hint-placeholder-val="{{ false }}"><span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#b8501c">potvrditi (§10)</span></sc-if>
+              </div>
+            </div>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+</main>
+<dc-import name="SiteFooter" marks="{{ marks }}" hint-size="100%,700px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { ready: !!window.SL, open: -1 };
+  componentDidMount() { if (this.state.ready) this.seo(); else this.wt = setInterval(() => { if (window.SL) { clearInterval(this.wt); this.setState({ ready: true }); this.seo(); } }, 30); }
+  componentWillUnmount() { clearInterval(this.wt); }
+  faqList() {
+    const S = window.SL, en = S.en;
+    const all = en ? [
+      ['How do I order?', 'We take orders by Instagram message (DM).'],
+      ['How much space does Source home cover?', 'Source home up to 70 m², Source home PRO up to 120 m². Spaces larger than 120 m² need 2 devices.', true],
+      ['How do I connect Source home?', 'To a Schuko socket, through the earth contact only. It must be the only device on that socket.'],
+      ['How long do I use ShAM?', 'Actively, every day, 15–30 min.', true],
+      ['How much is a space assessment?', 'An assessment from a sketch is free. An on-site assessment for companies is 17,000 RSD.'],
+      ['Is Source a medical device?', 'No. Source products are not medical devices and do not replace medical care.']
+    ] : [
+      ['Kako da poručim?', 'Porudžbine primamo u Instagram poruci (DM).'],
+      ['Koliki prostor pokriva Source home?', 'Source home do 70 m², Source home PRO do 120 m². Prostori veći od 120 m² zahtevaju 2 uredjaja.', true],
+      ['Kako se Source home priključuje?', 'Na šuko utičnicu, samo preko uzemljenja. Mora biti jedini uredjaj na tom priključku.'],
+      ['Koliko dugo se koristi ShAM?', 'Aktivno, svakodnevno 15–30 min.', true],
+      ['Koliko košta procena prostora?', 'Procena preko skice je besplatna. Procena na terenu za pravna lica je 17.000 din.'],
+      ['Da li je Source medicinsko sredstvo?', 'Ne. Source proizvodi nisu medicinska sredstva i ne zamenjuju lekarsku pomoć.']
+    ];
+    return all.filter(f => !f[2] || S.marks).map(([q, a, c]) => ({ q, a, confirm: !!c }));
+  }
+  seo() {
+    const S = window.SL, en = S.en, f = this.faqList().filter(x => !x.confirm);
+    S.seo({ paths: ['/proizvodi', '/en/products'], image: 'img/k-c02-presek-w.png',
+      title: en ? 'Products — Source' : 'Proizvodi — Source',
+      desc: en ? 'Source home, ShAM, bundles, free space assessment, Implocell and Ether pill. Prices in RSD.' : 'Source home, ShAM, paketi, besplatna procena prostora, Implocell i Ether pill. Cene u dinarima.',
+      crumbs: S.crumbs([['Početna','Home','Pocetna.dc.html'],['Proizvodi','Products','Proizvodi.dc.html']]),
+      schema: [{ '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: f.map(x => ({ '@type': 'Question', name: x.q, acceptedAnswer: { '@type': 'Answer', text: x.a } })) }] });
+  }
+  renderVals() {
+    const S = window.SL; if (!S) return {};
+    const en = S.en;
+    return {
+      t: en ? { h1: 'Products', intro: 'All device information and prices are on this page. Orders via Instagram message.', faq: 'Frequently asked questions' } : { h1: 'Proizvodi', intro: 'Sve informacije o uredjajima i cene nalaze se na ovoj stranici. Porudžbine u Instagram poruci.', faq: 'Česta pitanja' },
+      marks: S.marks,
+      crumbs: S.crumbs([['Početna','Home','Pocetna.dc.html'],['Proizvodi','Products','Proizvodi.dc.html']]),
+      items: ['source-home','sham','paketi','procena','implocell','ether-pill'].map(S.productCard),
+      faq: this.faqList().map((f, i) => { const o = this.state.open === i; return { ...f, id: 'faq-' + i, open: o, rot: o ? 'rotate(180deg)' : 'rotate(0deg)', chevBg: o ? '#034c30' : 'transparent', chevFg: o ? '#fff' : '#034c30', rows: o ? '1fr' : '0fr', op: o ? 1 : 0, toggle: () => this.setState(st => ({ open: st.open === i ? -1 : i })) }; })
+    };
+  }
+}
+</script>
+</body>
+</html>

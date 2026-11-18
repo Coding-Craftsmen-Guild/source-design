@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>Blog — Source</title>
+<link href="https://fonts.googleapis.com/css2?family=Maven+Pro:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400&amp;display=swap" rel="stylesheet">
+<link rel="icon" href="img/favicon-32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+<script src="site.js"></script>
+<script src="posts.js"></script>
+<style>
+@keyframes spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion:reduce){img[src$="flower-white.svg"]{animation:none!important}}
+body{margin:0;background:#fff;color:#191b1c;font-family:'Maven Pro',system-ui,sans-serif;font-size:17px;line-height:1.6}
+a{color:#034c30;text-decoration:none}a:hover{color:#206549}*{box-sizing:border-box}
+:focus-visible{outline:2px solid #034c30;outline-offset:2px}
+</style>
+</helmet>
+<div>
+<dc-import name="SiteHeader" active="blog" hint-size="100%,0px"></dc-import>
+<main>
+<article data-screen-label="Blog post">
+  <section data-screen-label="Banner" style="background:radial-gradient(ellipse 90% 120% at 50% 40%, #0f6c46 0%, #034c30 55%, #023a24 100%);color:#fff;position:relative;overflow:hidden">
+    <img src="img/flower-white.svg" alt="" style="position:absolute;right:-200px;top:-180px;width:560px;opacity:0.15;pointer-events:none;animation:spin 120s linear infinite">
+    <div style="position:relative;max-width:1200px;margin:0 auto;padding:96px 16px 72px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:40px 56px;align-items:center">
+      <header style="display:flex;flex-direction:column;gap:20px">
+        <dc-import name="Breadcrumbs" items="{{ crumbs }}" hint-size="100%,32px"></dc-import>
+        <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
+          <a href="{{ p.catHref }}" style="display:inline-flex;align-items:center;height:28px;padding:0 12px;border-radius:999px;background:rgba(3,76,48,0.8);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,0.45);color:#fff;font-size:12px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase" style-hover="color:#fff;border-color:#fff">{{ p.cat }}</a>
+          <time datetime="{{ p.date }}" style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#8fbeaa">{{ p.dateLabel }}</time>
+        </div>
+        <h1 style="margin:0;font-family:'Maven Pro',Arial,sans-serif;font-weight:400;font-size:clamp(28px,5.4vw,46px);line-height:1.25;letter-spacing:0.22em;text-transform:uppercase;color:#fff;text-wrap:balance">{{ p.title }}</h1>
+        <p style="margin:0;font-size:18px;color:#ebefea;max-width:34em;text-wrap:pretty;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden">{{ p.lead }}</p>
+      </header>
+      <figure style="margin:12px;aspect-ratio:{{ p.heroRatio }};position:relative;overflow:hidden;background:{{ p.heroBg }};box-shadow:{{ p.heroShadow }};outline:1px solid rgba(192,228,72,0.45);outline-offset:12px">
+        <sc-for list="{{ heroList }}" as="h" hint-placeholder-count="0"><dc-import name="Img" src="{{ h.src }}" alt="{{ h.alt }}" fit="{{ h.fit }}" pad="{{ h.pad }}" bg="{{ p.heroBg }}" style="position:absolute;inset:0" hint-size="100%,100%"></dc-import></sc-for>
+      </figure>
+    </div>
+  </section>
+  <div style="max-width:880px;margin:0 auto;padding:64px 16px 72px;display:flex;flex-direction:column;gap:24px">
+    <sc-if value="{{ p.video }}" hint-placeholder-val="{{ false }}">
+      <dc-import name="Video" src="{{ p.video }}" label="{{ p.title }}" caption="{{ t.loop }}" hint-size="100%,380px"></dc-import>
+    </sc-if>
+    <sc-for list="{{ p.paras }}" as="x" hint-placeholder-count="2">
+      <p style="margin:0;font-size:18px;line-height:1.75;text-wrap:pretty">{{ x }}</p>
+    </sc-for>
+    <sc-if value="{{ p.quote }}" hint-placeholder-val="{{ false }}"><blockquote style="margin:8px 0;padding-left:20px;border-left:2px solid #034c30;font-style:italic;font-size:clamp(19px,2.6vw,23px);line-height:1.5;color:#034c30">{{ p.quote }}</blockquote></sc-if>
+    <sc-if value="{{ p.spectrum }}" hint-placeholder-val="{{ false }}">
+      <figure style="margin:8px 0;display:flex;flex-direction:column;gap:8px">
+        <div style="height:16px;background:linear-gradient(90deg,#78c8e8,#ebefea 50%,#e46024 80%,#c81818)"></div>
+        <figcaption style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-family:'JetBrains Mono',monospace;font-size:13px"><span style="color:#191b1c">{{ t.cool }}</span><span style="color:#c81818">{{ t.warm }}</span></figcaption>
+      </figure>
+    </sc-if>
+    <sc-if value="{{ rel.show }}" hint-placeholder-val="{{ false }}">
+      <a href="{{ rel.href }}" style="background:#ebefea;padding:20px;border-left:2px solid #034c30;display:flex;flex-direction:column;gap:8px;color:#191b1c" style-hover="background:#e2e8e1;color:#191b1c">
+        <span style="font-family:'Maven Pro',Arial,sans-serif;font-weight:600;font-size:13px;letter-spacing:0.15em;text-transform:uppercase;color:#034c30">{{ rel.title }} →</span>
+        <span style="font-size:16px">{{ rel.text }}</span>
+      </a>
+    </sc-if>
+    
+  </div>
+</article>
+<dc-import name="ProductsRow" title="{{ t.relProd }}" only="{{ prodKey }}" hint-size="100%,720px"></dc-import>
+<section style="background:#fff;overflow:hidden;position:relative;isolation:isolate">
+  <div aria-hidden="true" style="position:absolute;inset:0;z-index:-1;pointer-events:none;background-image:url(img/bg-k-b03-energija-g.png);background-repeat:no-repeat;background-attachment:fixed;background-size:auto 100vh;background-position:left top;-webkit-mask-image:linear-gradient(-45deg, transparent 15%, #000 70%);mask-image:linear-gradient(-45deg, transparent 15%, #000 70%)"></div>
+  <div style="max-width:1200px;margin:0 auto;padding:64px 16px;display:flex;flex-direction:column;gap:24px">
+    <dc-import name="SectionTitle" title="{{ t.moreCat }}" hint-size="100%,48px"></dc-import>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:20px;align-items:stretch">
+      <sc-for list="{{ moreList }}" as="m" hint-placeholder-count="3">
+        <dc-import name="Card" style="height:100%" href="{{ m.href }}" cat="{{ m.cat }}" img="{{ m.img }}" img-alt="{{ m.imgAlt }}" fit="{{ m.fit }}" ratio="16/9" title="{{ m.title }}" text="{{ m.text }}" date="{{ m.date }}" meta="{{ m.meta }}" hint-size="100%,460px"></dc-import>
+      </sc-for>
+    </div>
+  </div>
+</section>
+</main>
+<dc-import name="SiteFooter" hint-size="100%,700px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;slug&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;wifi-ruter-glavni-izvor&quot;,&quot;greska-koja-se-ne-prasta&quot;,&quot;formula-procene&quot;,&quot;dimni-eksperiment&quot;,&quot;telefon-i-wifi-24h&quot;,&quot;ruter-i-pozitivni-joni&quot;,&quot;padovi-energije&quot;,&quot;mi-nismo-baterije&quot;,&quot;svezina-posle-odmora&quot;,&quot;polja-su-portali&quot;,&quot;boje-energije&quot;,&quot;svesno-disanje&quot;,&quot;voda-i-negativan-naboj&quot;,&quot;implocell-test-vode&quot;,&quot;ether-pill-put-do-eliksir-vode&quot;,&quot;kumulativni-efekat&quot;,&quot;linije-pod-45&quot;],&quot;default&quot;:&quot;wifi-ruter-glavni-izvor&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+class Component extends DCLogic {
+  state = { ready: !!(window.SL && window.SOURCE_POSTS) };
+  componentDidMount() { if (this.state.ready) this.seo(); else this.wt = setInterval(() => { if (window.SL && window.SOURCE_POSTS) { clearInterval(this.wt); this.setState({ ready: true }); this.seo(); } }, 30); }
+  componentWillUnmount() { clearInterval(this.wt); }
+  post() {
+    const all = window.SOURCE_POSTS;
+    const slug = new URLSearchParams(location.search).get('slug') || this.props.slug || 'wifi-ruter-glavni-izvor';
+    return all.find(x => x.slug === slug) || all[0];
+  }
+  seo() {
+    const S = window.SL, en = S.en, r = this.post(), c = S.CATS.find(x => x.key === r.cat);
+    const title = en ? r.titleEn : r.title, body = en ? r.bodyEn[0] : r.body[0];
+    const desc = body.length > 155 ? body.slice(0, 154).replace(/\s+\S*$/, '') + '…' : body;
+    S.seo({ paths: ['/blog/' + r.slug, '/en/blog/' + r.slug], image: r.hero.replace(/^img\//, 'img/'), type: 'article',
+      title: title + (en ? ' — Source blog' : ' — Source blog'), desc,
+      crumbs: S.crumbs([['Početna','Home','Pocetna.dc.html'],['Blog','Blog','Blog.dc.html'],[c.key, c.en, 'Kategorija.dc.html', 'cat=' + c.slug, c.slug],[r.title, r.titleEn, 'Blog-post.dc.html', 'slug=' + r.slug, r.slug]]),
+      schema: [{ '@context': 'https://schema.org', '@type': 'BlogPosting', headline: title, image: location.origin + '/' + r.hero, datePublished: r.date, inLanguage: en ? 'en' : 'sr', author: { '@type': 'Organization', name: 'Source' }, publisher: { '@type': 'Organization', name: 'Source', logo: { '@type': 'ImageObject', url: location.origin + '/img/logo.png' } } }] });
+  }
+  renderVals() {
+    if (!(window.SL && window.SOURCE_POSTS)) return {};
+    const S = window.SL, en = S.en, all = window.SOURCE_POSTS, r = this.post();
+    const c = S.CATS.find(x => x.key === r.cat);
+    const card = (x) => ({ cat: (S.CATS.find(c => c.key === x.cat) || {})[en ? 'en' : 'key'] || '', href: S.href('Blog-post.dc.html', 'slug=' + x.slug), title: en ? x.titleEn : x.title, img: x.hero.replace('-g.png', '-w.png'), imgAlt: en ? x.heroAltEn : x.heroAlt, text: en ? x.bodyEn[0] : x.body[0], date: S.fmtDate(x.date), meta: en ? 'Read' : 'Pročitajte', fit: x.hero.includes('ether-pill-2022') ? 'contain-white' : '' });
+    const line = /\.png$/i.test(r.hero), isCard = r.hero.includes('ether-pill-2022');
+    const hero = { src: line ? r.hero.replace('-g.png', '-w.png') : r.hero, alt: en ? r.heroAltEn : r.heroAlt, fit: line || isCard ? 'contain' : 'cover', pad: line ? '4%' : (isCard ? '12px' : '0') };
+    const relP = r.relatedSlug ? all.find(x => x.slug === r.relatedSlug) : null;
+    return {
+      t: en ? { loop: 'Silent video, looping.', cool: '− cool tones · negative', warm: 'warm tones · positive +', relProd: 'Related product', more: 'More information, prices and orders via Instagram DM.', cta: 'Request a quote', moreCat: 'More from this category' }
+        : { loop: 'Video bez zvuka, u petlji.', cool: '− hladni tonovi · negativno', warm: 'topli tonovi · pozitivno +', relProd: 'Povezan proizvod', more: 'Ostale informacije, cena i porudžbine u DM.', cta: 'Zatražite ponudu', moreCat: 'Još iz kategorije' },
+      crumbs: S.crumbs([['Početna','Home','Pocetna.dc.html'],['Blog','Blog','Blog.dc.html'],[c.key, c.en, 'Kategorija.dc.html', 'cat=' + c.slug, c.slug],[r.title, r.titleEn, 'Blog-post.dc.html', 'slug=' + r.slug, r.slug]]),
+      p: { title: en ? r.titleEn : r.title, cat: en ? c.en : c.key, catHref: S.href('Kategorija.dc.html', 'cat=' + c.slug), date: r.date, dateLabel: S.fmtDate(r.date),
+        lead: (en ? r.bodyEn[0] : r.body[0]), heroBg: line ? 'rgba(2,40,25,0.25)' : '#fff', heroRatio: line ? '3/2' : '4/3', heroShadow: line ? 'none' : '0 24px 60px rgba(1,25,15,0.45)', hero: r.hero, heroAlt: en ? r.heroAltEn : r.heroAlt, video: r.video || '', paras: en ? r.bodyEn : r.body, quote: en ? (r.quoteEn || '') : (r.quote || ''), spectrum: !!r.spectrum,
+        link: !!r.link, linkHref: r.link ? S.href(r.link.href) : '', linkLabel: r.link ? (en ? r.linkLabelEn || r.link.label : r.link.label) : '' },
+      rel: relP ? { show: true, href: S.href('Blog-post.dc.html', 'slug=' + relP.slug), title: en ? relP.titleEn : relP.title, text: en ? (r.relatedEn || relP.bodyEn[0]) : (r.related || relP.body[0]) } : { show: false },
+      heroList: [hero], prodKey: r.product === 'source-home' ? 'source-home,procena' : r.product,
+      prod: S.productCard(r.product),
+      moreList: all.filter(x => x.cat === r.cat && x.slug !== r.slug).sort((a, b) => b.date.localeCompare(a.date)).slice(0, 3).map(card)
+    };
+  }
+}
+</script>
+</body>
+</html>

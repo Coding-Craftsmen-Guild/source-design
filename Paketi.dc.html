@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>Paketi — Source</title>
+<link href="https://fonts.googleapis.com/css2?family=Maven+Pro:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400&amp;display=swap" rel="stylesheet">
+<link rel="icon" href="img/favicon-32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+<script src="site.js"></script>
+<script src="posts.js"></script>
+<script src="products-data.js"></script>
+<style>
+@keyframes spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+@keyframes emfPulse{0%{transform:scale(0.4);opacity:0.9}100%{transform:scale(2.6);opacity:0}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important}}
+body{margin:0;background:#fff;color:#191b1c;font-family:'Maven Pro',system-ui,sans-serif;font-size:17px;line-height:1.6}
+a{color:#034c30;text-decoration:none}a:hover{color:#206549}*{box-sizing:border-box}
+:focus-visible{outline:2px solid #034c30;outline-offset:2px}
+</style>
+</helmet>
+<div>
+<dc-import name="SiteHeader" active="proizvodi" hint-size="100%,0px"></dc-import>
+<main>
+<dc-import name="Proizvod" product="paketi" hint-size="100%,2400px"></dc-import>
+</main>
+<dc-import name="SiteFooter" ctaTitle="Paketi" hint-size="100%,700px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>Blog — Source</title>
+<link href="https://fonts.googleapis.com/css2?family=Maven+Pro:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400&amp;display=swap" rel="stylesheet">
+<link rel="icon" href="img/favicon-32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+<script src="site.js"></script>
+<script src="posts.js"></script>
+<style>
+@keyframes spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion:reduce){img[src$="flower-white.svg"]{animation:none!important}}
+body{margin:0;background:#fff;color:#191b1c;font-family:'Maven Pro',system-ui,sans-serif;font-size:17px;line-height:1.6}
+a{color:#034c30;text-decoration:none}a:hover{color:#206549}*{box-sizing:border-box}
+:focus-visible{outline:2px solid #034c30;outline-offset:2px}
+</style>
+</helmet>
+<div>
+<dc-import name="SiteHeader" active="blog" hint-size="100%,0px"></dc-import>
+<main>
+  <section data-screen-label="Kategorija — naslov" style="background:radial-gradient(ellipse 90% 120% at 50% 40%, #0f6c46 0%, #034c30 55%, #023a24 100%);color:#fff;position:relative;overflow:hidden">
+    <img src="img/flower-white.svg" alt="" style="position:absolute;right:-180px;top:-160px;width:480px;opacity:0.15;pointer-events:none;animation:spin 120s linear infinite">
+    <div style="position:relative;max-width:1200px;margin:0 auto;padding:88px 16px 40px;display:flex;flex-direction:column;gap:12px">
+      <dc-import name="Breadcrumbs" items="{{ crumbs }}" hint-size="100%,32px"></dc-import>
+      <h1 style="margin:0;font-family:'Maven Pro',Arial,sans-serif;font-weight:400;font-size:clamp(26px,5vw,44px);line-height:1.3;letter-spacing:0.22em;text-transform:uppercase;text-wrap:balance">{{ h1 }}</h1>
+      <p style="margin:0;color:#ebefea;font-size:17px;max-width:40em">{{ intro }}</p>
+    </div>
+  </section>
+  <section style="max-width:1200px;margin:0 auto;padding:24px 16px 64px;display:flex;flex-direction:column;gap:32px">
+    <nav aria-label="{{ t.cats }}" style="display:flex;gap:8px;overflow-x:auto;margin:0 -16px;padding:0 16px 4px">
+      <a href="{{ allHref }}" style="flex:none;display:inline-flex;align-items:center;height:40px;padding:0 16px;border-radius:999px;border:1px solid #034c30;background:#fff;color:#034c30;font-size:14px;font-weight:600">{{ t.all }}</a>
+      <sc-for list="{{ chips }}" as="f" hint-placeholder-count="3">
+        <a href="{{ f.href }}" aria-current="{{ f.cur }}" style="flex:none;display:inline-flex;align-items:center;height:40px;padding:0 16px;border-radius:999px;border:1px solid #034c30;background:{{ f.bg }};color:{{ f.fg }};font-size:14px;font-weight:600">{{ f.label }}</a>
+      </sc-for>
+    </nav>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:20px;align-items:stretch">
+      <sc-for list="{{ posts }}" as="p" hint-placeholder-count="6">
+        <dc-import name="Card" style="height:100%" href="{{ p.href }}" img="{{ p.img }}" img-alt="{{ p.imgAlt }}" fit="{{ p.fit }}" ratio="16/9" title="{{ p.title }}" text="{{ p.text }}" date="{{ p.date }}" meta="{{ p.meta }}" hint-size="100%,460px"></dc-import>
+      </sc-for>
+    </div>
+  </section>
+  <dc-import name="ProductsRow" title="{{ t.prods }}" hint-size="100%,720px"></dc-import>
+</main>
+<dc-import name="SiteFooter" hint-size="100%,700px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;cat&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;prostor-i-zracenje&quot;,&quot;energija-tela&quot;,&quot;voda-i-projekti&quot;],&quot;default&quot;:&quot;prostor-i-zracenje&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+class Component extends DCLogic {
+  state = { ready: !!(window.SL && window.SOURCE_POSTS) };
+  componentDidMount() { if (this.state.ready) this.seo(); else this.wt = setInterval(() => { if (window.SL && window.SOURCE_POSTS) { clearInterval(this.wt); this.setState({ ready: true }); this.seo(); } }, 30); }
+  componentWillUnmount() { clearInterval(this.wt); }
+  cat() { const S = window.SL, k = new URLSearchParams(location.search).get('cat') || this.props.cat || 'prostor-i-zracenje'; return S.CATS.find(c => c.slug === k) || S.CATS[0]; }
+  info(c) {
+    return {
+      'prostor-i-zracenje': { sr: 'Kako ruter, telefon i pametni uredjaji utiču na energiju vašeg prostora.', en: 'How routers, phones and smart devices affect the energy of your space.', prods: ['source-home', 'procena'] },
+      'energija-tela': { sr: 'Tekstovi o protoku energije kroz telo, disanju, polju i bojama energije.', en: 'Posts on how energy flows through the body, breathing, fields and the colours of energy.', prods: ['sham', 'paketi'] },
+      'voda-i-projekti': { sr: 'Voda, njen naboj i projekti Implocell i Ether pill.', en: 'Water, its charge, and the Implocell and Ether pill projects.', prods: ['implocell', 'ether-pill'] }
+    }[c.slug];
+  }
+  seo() {
+    const S = window.SL, en = S.en, c = this.cat(), i = this.info(c);
+    S.seo({ paths: ['/blog/kategorija/' + c.slug, '/en/blog/category/' + c.slugEn], image: 'img/k-b07-emf-ruter-g.png',
+      title: (en ? c.en : c.key) + ' — Blog · Source', desc: en ? i.en : i.sr,
+      crumbs: S.crumbs([['Početna','Home','Pocetna.dc.html'],['Blog','Blog','Blog.dc.html'],[c.key, c.en, 'Kategorija.dc.html', 'cat=' + c.slug, c.slug]]) });
+  }
+  renderVals() {
+    if (!(window.SL && window.SOURCE_POSTS)) return {};
+    const S = window.SL, en = S.en, c = this.cat(), i = this.info(c);
+    return {
+      t: en ? { cats: 'Categories', all: 'All', prods: 'Related products' } : { cats: 'Kategorije', all: 'Sve', prods: 'Povezani proizvodi' },
+      h1: (en ? c.en : c.key) + ' — Blog', intro: en ? i.en : i.sr, allHref: S.href('Blog.dc.html'),
+      crumbs: S.crumbs([['Početna','Home','Pocetna.dc.html'],['Blog','Blog','Blog.dc.html'],[c.key, c.en, 'Kategorija.dc.html', 'cat=' + c.slug, c.slug]]),
+      chips: S.CATS.map(x => ({ label: en ? x.en : x.key, href: S.href('Kategorija.dc.html', 'cat=' + x.slug), cur: x.slug === c.slug ? 'page' : undefined, bg: x.slug === c.slug ? '#034c30' : '#fff', fg: x.slug === c.slug ? '#fff' : '#034c30' })),
+      posts: window.SOURCE_POSTS.filter(p => p.cat === c.key).sort((a, b) => b.date.localeCompare(a.date)).map(p => ({
+        href: S.href('Blog-post.dc.html', 'slug=' + p.slug), title: en ? p.titleEn : p.title, img: p.hero.replace('-g.png', '-w.png'), imgAlt: en ? p.heroAltEn : p.heroAlt,
+        fit: p.hero.includes('ether-pill-2022') ? 'contain-white' : '', text: en ? p.bodyEn[0] : p.body[0], date: S.fmtDate(p.date), meta: en ? 'Read' : 'Pročitajte' })),
+      prods: i.prods.map(S.productCard)
+    };
+  }
+}
+</script>
+</body>
+</html>

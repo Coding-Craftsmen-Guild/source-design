@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>Blog — Source</title>
+<link href="https://fonts.googleapis.com/css2?family=Maven+Pro:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400&amp;display=swap" rel="stylesheet">
+<link rel="icon" href="img/favicon-32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+<script src="site.js"></script>
+<script src="posts.js"></script>
+<style>
+@keyframes spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion:reduce){img[src$="flower-white.svg"]{animation:none!important}}
+@keyframes cardIn{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important}}
+body{margin:0;background:#fff;color:#191b1c;font-family:'Maven Pro',system-ui,sans-serif;font-size:17px;line-height:1.6}
+a{color:#034c30;text-decoration:none}a:hover{color:#206549}*{box-sizing:border-box}
+:focus-visible{outline:2px solid #034c30;outline-offset:2px}
+</style>
+</helmet>
+<div>
+<dc-import name="SiteHeader" active="blog" hint-size="100%,0px"></dc-import>
+<main>
+  <section data-screen-label="Blog — naslov" style="background:radial-gradient(ellipse 90% 120% at 50% 40%, #0f6c46 0%, #034c30 55%, #023a24 100%);color:#fff;position:relative;overflow:hidden">
+    <img src="img/flower-white.svg" alt="" style="position:absolute;right:-180px;top:-160px;width:480px;opacity:0.15;pointer-events:none;animation:spin 120s linear infinite">
+    <div style="position:relative;max-width:1200px;margin:0 auto;padding:88px 16px 40px;display:flex;flex-direction:column;gap:12px">
+      <dc-import name="Breadcrumbs" items="{{ crumbs }}" hint-size="100%,32px"></dc-import>
+      <h1 style="margin:0;font-family:'Maven Pro',Arial,sans-serif;font-weight:400;font-size:clamp(32px,6vw,52px);letter-spacing:0.33em;text-transform:uppercase">{{ t.h1 }}</h1>
+      <p style="margin:0;color:#8fbeaa;font-size:17px">{{ t.lead }}</p>
+    </div>
+  </section>
+  <section style="max-width:1200px;margin:0 auto;padding:24px 16px 72px;display:flex;flex-direction:column;gap:32px">
+    <nav aria-label="{{ t.cats }}" style="display:flex;gap:8px;overflow-x:auto;margin:0 -16px;padding:0 16px 4px">
+      <span aria-current="page" style="flex:none;display:inline-flex;align-items:center;height:40px;padding:0 16px;border-radius:999px;border:1px solid #034c30;background:#034c30;color:#fff;font-size:14px;font-weight:600">{{ t.all }}</span>
+      <sc-for list="{{ chips }}" as="f" hint-placeholder-count="3">
+        <a href="{{ f.href }}" style="flex:none;display:inline-flex;align-items:center;height:40px;padding:0 16px;border-radius:999px;border:1px solid #034c30;background:#fff;color:#034c30;font-size:14px;font-weight:600" style-hover="background:#ebefea;color:#034c30">{{ f.label }}</a>
+      </sc-for>
+    </nav>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:20px;align-items:stretch">
+      <sc-for list="{{ shown }}" as="p" hint-placeholder-count="0">
+        <div style="height:100%;animation:{{ p.anim }}"><dc-import name="Card" style="height:100%" cat="{{ p.cat }}" href="{{ p.href }}" img="{{ p.img }}" img-alt="{{ p.imgAlt }}" fit="{{ p.fit }}" ratio="16/9" title="{{ p.title }}" text="{{ p.text }}" date="{{ p.date }}" meta="{{ p.meta }}" hint-size="100%,460px"></dc-import></div>
+      </sc-for>
+    </div>
+    <div ref="{{ sentinel }}" style="height:1px"></div>
+  </section>
+<dc-import name="ProductsRow" title="{{ t.prods }}" hint-size="100%,720px"></dc-import>
+</main>
+<dc-import name="SiteFooter" hint-size="100%,700px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { ready: !!(window.SL && window.SOURCE_POSTS), count: 6, prev: 0 };
+  sentinel = React.createRef();
+  componentDidMount() {
+    const attach = () => { if (!this.sentinel.current) return setTimeout(attach, 200); this.io = new IntersectionObserver((e) => { if (e[0].isIntersecting && this.state.count < 17) this.setState(s => ({ prev: s.count, count: s.count + 6 })); }, { rootMargin: '200px' }); this.io.observe(this.sentinel.current); }; setTimeout(attach, 300); if (this.state.ready) this.seo(); else this.wt = setInterval(() => { if (window.SL && window.SOURCE_POSTS) { clearInterval(this.wt); this.setState({ ready: true }); this.seo(); } }, 30); }
+  componentWillUnmount() { clearInterval(this.wt); if (this.io) this.io.disconnect(); }
+  seo() {
+    const S = window.SL, en = S.en;
+    S.seo({ paths: ['/blog', '/en/blog'], image: 'img/k-b07-emf-ruter-g.png', title: 'Blog — Source', desc: en ? 'Ether, space, body energy and water.' : 'Etar, prostor, energija tela, voda.', crumbs: S.crumbs([['Početna','Home','Pocetna.dc.html'],['Blog','Blog','Blog.dc.html']]) });
+  }
+  renderVals() {
+    if (!(window.SL && window.SOURCE_POSTS)) return {};
+    const S = window.SL, en = S.en;
+    return {
+      t: en ? { h1: 'Blog', lead: 'Ether, space, body energy, water.', cats: 'Categories', all: 'All', prods: 'Products' } : { h1: 'Blog', lead: 'Etar, prostor, energija tela, voda.', cats: 'Kategorije', all: 'Sve', prods: 'Proizvodi' },
+      prods: Object.keys(S.PRODUCTS).map(S.productCard),
+      crumbs: S.crumbs([['Početna','Home','Pocetna.dc.html'],['Blog','Blog','Blog.dc.html']]),
+      chips: S.CATS.map(c => ({ label: en ? c.en : c.key, href: S.href('Kategorija.dc.html', 'cat=' + c.slug) })),
+      sentinel: this.sentinel,
+      shown: window.SOURCE_POSTS.slice().sort((a, b) => b.date.localeCompare(a.date)).map(p => { const c = S.CATS.find(x => x.key === p.cat); return {
+        href: S.href('Blog-post.dc.html', 'slug=' + p.slug), title: en ? p.titleEn : p.title, cat: en ? c.en : c.key, catHref: S.href('Kategorija.dc.html', 'cat=' + c.slug),
+        img: p.hero.replace('-g.png', '-w.png'), imgAlt: en ? p.heroAltEn : p.heroAlt, fit: p.hero.includes('ether-pill-2022') ? 'contain-white' : '',
+        text: en ? p.bodyEn[0] : p.body[0], date: S.fmtDate(p.date), meta: en ? 'Read' : 'Pročitajte' }; }).slice(0, this.state.count).map((x, i) => ({ ...x, anim: i >= this.state.prev && this.state.prev > 0 ? 'cardIn 0.6s ease ' + ((i - this.state.prev) * 0.08) + 's both' : 'none' }))
+    };
+  }
+}
+</script>
+</body>
+</html>

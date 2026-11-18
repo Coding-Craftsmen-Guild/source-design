@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<figure style="margin:0;padding:{{ pad }};display:flex;flex-direction:column;gap:20px">
+  <div style="position:relative;aspect-ratio:{{ ratio }};background:{{ boxBg }};overflow:hidden;box-shadow:{{ frame }};outline:{{ ol }};outline-offset:{{ olo }}">
+    <video ref="{{ vRef }}" src="{{ src }}" poster="{{ poster }}" muted="{{ true }}" loop="{{ true }}" playsInline="{{ true }}" preload="metadata" aria-label="{{ label }}" style="width:100%;height:100%;object-fit:{{ fit }};display:block"></video>
+    <button onClick="{{ openBox }}" aria-label="{{ openLabel }}" style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:76px;height:76px;border-radius:50%;border:1px solid rgba(255,255,255,0.8);background:rgba(3,76,48,0.85);backdrop-filter:blur(4px);color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:transform 0.25s ease, background 0.25s ease" style-hover="transform:translate(-50%,-50%) scale(1.08);background:#034c30"><svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="#fff"></path></svg></button>
+    <button onClick="{{ toggle }}" aria-label="{{ btnLabel }}" aria-pressed="{{ playing }}" style="position:absolute;left:12px;bottom:12px;width:40px;height:40px;border-radius:50%;border:1px solid rgba(255,255,255,0.6);background:rgba(3,76,48,0.7);color:#fff;font-size:12px;cursor:pointer;display:flex;align-items:center;justify-content:center">{{ icon }}</button>
+  </div>
+  <sc-if value="{{ caption }}" hint-placeholder-val="{{ false }}"><figcaption style="font-size:14px;color:{{ capColor }}">{{ caption }}</figcaption></sc-if>
+</figure>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:&quot;480px&quot;,&quot;height&quot;:&quot;300px&quot;},&quot;src&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;video/2024-12-11_11-47-57_UTC.mp4&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;poster&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;ratio&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;16/9&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;fit&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;cover&quot;,&quot;contain&quot;],&quot;default&quot;:&quot;cover&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;label&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Video&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;caption&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;dark&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;}}">
+class Component extends DCLogic {
+  state = { playing: false };
+  vRef = React.createRef();
+  componentDidMount() {
+    const v = this.vRef.current; if (!v) return;
+    v.muted = true;
+    const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!reduce && (this.props.autoplay ?? true)) v.play().then(() => this.setState({ playing: true })).catch(() => {});
+  }
+  renderVals() {
+    const en = window.SL && window.SL.en, p = this.state.playing;
+    return {
+      vRef: this.vRef, mask: 'none', boxBg: '#191b1c', bx: '16px', by: '16px', bt: 'none', frame: this.props.feather ? '0 24px 60px rgba(1,25,15,0.45)' : 'none', ol: this.props.feather ? '1px solid rgba(192,228,72,0.45)' : '1px solid rgba(3,76,48,0.45)', olo: '12px', pad: this.props.feather ? '0' : '12px', src: this.props.src ?? '', poster: this.props.poster || undefined, ratio: this.props.ratio ?? '16/9', fit: this.props.fit ?? 'cover',
+      label: this.props.label ?? 'Video', caption: this.props.caption ?? '', capColor: this.props.dark ? '#8fbeaa' : '#4d5a42',
+      playing: p, icon: p ? '❚❚' : '▶', btnLabel: p ? (en ? 'Pause video' : 'Pauziraj video') : (en ? 'Play video' : 'Pusti video'),
+      openLabel: en ? 'Play video in full size' : 'Pusti video u punoj veličini',
+      openBox: (e) => { const S = window.SL; const v = this.vRef.current; if (v) { v.pause(); this.setState({ playing: false }); } if (S) S.videoBox(this.props.src, this.props.label, e.currentTarget); },
+      toggle: () => { const v = this.vRef.current; if (!v) return; if (v.paused) { v.play(); this.setState({ playing: true }); } else { v.pause(); this.setState({ playing: false }); } }
+    };
+  }
+}
+</script>
+</body>
+</html>

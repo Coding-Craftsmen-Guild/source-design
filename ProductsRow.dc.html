@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<section data-screen-label="Proizvodi" style="background:{{ bg }};overflow:hidden">
+  <div style="max-width:1200px;margin:0 auto;padding:64px 16px 24px;display:flex;flex-direction:column;gap:12px">
+    <dc-import name="SectionTitle" title="{{ title }}" eyebrow="{{ eyebrow }}" hint-size="100%,48px"></dc-import>
+  </div>
+  <sc-if value="{{ isStatic }}" hint-placeholder-val="{{ false }}"><div style="max-width:1200px;margin:0 auto;padding:16px 16px 8px;display:flex;flex-wrap:wrap;justify-content:center;gap:20px"><sc-for list="{{ items }}" as="o" hint-placeholder-count="0"><div style="width:min(100%,340px);display:flex;flex-direction:column"><dc-import name="Card" style="height:100%" href="{{ o.href }}" img="{{ o.img }}" img-alt="{{ o.imgAlt }}" fit="{{ o.fit }}" title="{{ o.title }}" text="{{ o.text }}" meta="{{ o.meta }}" hint-size="100%,500px"></dc-import></div></sc-for></div></sc-if>
+  <sc-if value="{{ isLoop }}" hint-placeholder-val="{{ true }}"><div onMouseEnter="{{ pause }}" onMouseLeave="{{ resume }}" onTouchStart="{{ pause }}" onTouchEnd="{{ resumeLater }}" style="padding:16px 0 8px">
+    <div ref="{{ trackRef }}" style="display:flex;gap:20px;width:max-content;will-change:transform">
+      <sc-for list="{{ loop }}" as="o" hint-placeholder-count="0"><div style="width:min(78vw,320px);flex:none;display:flex;flex-direction:column"><dc-import name="Card" style="height:100%" href="{{ o.href }}" img="{{ o.img }}" img-alt="{{ o.imgAlt }}" fit="{{ o.fit }}" title="{{ o.title }}" text="{{ o.text }}" meta="{{ o.meta }}" hint-size="100%,500px"></dc-import></div></sc-for>
+    </div>
+  </div></sc-if>
+  <div style="display:flex;justify-content:center;padding:24px 16px 64px">
+    <a href="{{ allHref }}" style="display:inline-flex;align-items:center;gap:10px;height:48px;padding:0 28px;border:1px solid #034c30;border-radius:6px;color:#034c30;font-family:'Maven Pro',Arial,sans-serif;font-weight:600;font-size:13px;letter-spacing:0.14em;text-transform:uppercase" style-hover="background:#034c30;color:#fff">{{ allLabel }} <span aria-hidden="true">→</span></a>
+  </div>
+</section>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:&quot;100%&quot;,&quot;height&quot;:&quot;720px&quot;},&quot;title&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;eyebrow&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;exclude&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;&quot;,&quot;source-home&quot;,&quot;sham&quot;,&quot;paketi&quot;,&quot;procena&quot;,&quot;implocell&quot;,&quot;ether-pill&quot;],&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;only&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;bg&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#ebefea&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+class Component extends DCLogic {
+  trackRef = React.createRef(); paused = false; x = 0;
+  componentDidMount() {
+    if (!window.SL) this.wt = setInterval(() => { if (window.SL) { clearInterval(this.wt); this.forceUpdate(); } }, 30);
+    const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let last = performance.now();
+    const tick = (t) => { const el = this.trackRef.current, dt = Math.min(64, t - last); last = t;
+      if (el && !reduce) { const half = el.scrollWidth / 2; if (!this.paused) this.x += dt * 0.015; if (this.x >= half) this.x -= half; el.style.transform = 'translateX(' + (-this.x) + 'px)'; }
+      this.raf = requestAnimationFrame(tick); };
+    this.raf = requestAnimationFrame(tick);
+  }
+  componentWillUnmount() { cancelAnimationFrame(this.raf); clearTimeout(this.rt); clearInterval(this.wt); }
+  renderVals() {
+    const S = window.SL; if (!S) return {};
+    const en = S.en, ex = this.props.exclude || '';
+    const only = (this.props.only || '').split(',').map(s => s.trim()).filter(k => S.PRODUCTS[k]);
+    const l = (only.length ? only : Object.keys(S.PRODUCTS).filter(k => k !== ex)).map(S.productCard);
+    const st = only.length > 0 && only.length <= 3;
+    return {
+      bg: this.props.bg || '#ebefea', title: this.props.title || (en ? 'Products' : 'Proizvodi'), eyebrow: this.props.eyebrow || '',
+      allHref: S.href('Proizvodi.dc.html'), allLabel: en ? 'All products' : 'Svi proizvodi',
+      trackRef: this.trackRef, loop: st ? [] : l.concat(l), items: st ? l : [], isStatic: st, isLoop: !st,
+      pause: () => { this.paused = true; clearTimeout(this.rt); }, resume: () => { this.paused = false; },
+      resumeLater: () => { clearTimeout(this.rt); this.rt = setTimeout(() => { this.paused = false; }, 2500); }
+    };
+  }
+}
+</script>
+</body>
+</html>
