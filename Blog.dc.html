@@ -12,7 +12,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Maven+Pro:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400&amp;display=swap" rel="stylesheet">
 <link rel="icon" href="img/favicon-32.png" sizes="32x32">
 <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
-<script src="site.js"></script>
+<script src="site.js?v=11"></script>
 <script src="posts.js"></script>
 <style>
 @keyframes spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
@@ -20,26 +20,27 @@
 @keyframes cardIn{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important}}
 body{margin:0;background:#fff;color:#191b1c;font-family:'Maven Pro',system-ui,sans-serif;font-size:17px;line-height:1.6}
-a{color:#034c30;text-decoration:none}a:hover{color:#206549}*{box-sizing:border-box}
-:focus-visible{outline:2px solid #034c30;outline-offset:2px}
+a{color:#23382f;text-decoration:none}a:hover{color:#3a5a4b}*{box-sizing:border-box}
+:focus-visible{outline:2px solid #23382f;outline-offset:2px}
+[data-chips]::-webkit-scrollbar{display:none}
 </style>
 </helmet>
 <div>
 <dc-import name="SiteHeader" active="blog" hint-size="100%,0px"></dc-import>
 <main>
-  <section data-screen-label="Blog — naslov" style="background:radial-gradient(ellipse 90% 120% at 50% 40%, #0f6c46 0%, #034c30 55%, #023a24 100%);color:#fff;position:relative;overflow:hidden">
-    <img src="img/flower-white.svg" alt="" style="position:absolute;right:-180px;top:-160px;width:480px;opacity:0.15;pointer-events:none;animation:spin 120s linear infinite">
+  <section data-screen-label="Blog — naslov" style="background:radial-gradient(ellipse 90% 120% at 50% 40%, #3a5a4b 0%, #23382f 55%, #16241e 100%);color:#fff;position:relative;overflow:hidden">
+    <img src="img/burst-copper.png" alt="" style="position:absolute;right:-180px;top:-160px;width:480px;opacity:0.4;pointer-events:none;animation:spin 120s linear infinite">
     <div style="position:relative;max-width:1200px;margin:0 auto;padding:88px 16px 40px;display:flex;flex-direction:column;gap:12px">
       <dc-import name="Breadcrumbs" items="{{ crumbs }}" hint-size="100%,32px"></dc-import>
-      <h1 style="margin:0;font-family:'Maven Pro',Arial,sans-serif;font-weight:400;font-size:clamp(32px,6vw,52px);letter-spacing:0.33em;text-transform:uppercase">{{ t.h1 }}</h1>
-      <p style="margin:0;color:#8fbeaa;font-size:17px">{{ t.lead }}</p>
+      <h1 style="margin:0;font-size:clamp(36px,calc(2.5vw + 26px),56px);line-height:1.15;letter-spacing:calc(0.08em + 0.6vw);font-family:'Maven Pro',Arial,sans-serif;font-weight:400;text-transform:uppercase;text-wrap:balance;color:#fff">{{ t.h1 }}</h1>
+      <p style="margin:0;font-size:clamp(18px,calc(0.25vw + 17px),20px);line-height:1.6;color:#fff;max-width:36em;text-wrap:pretty">{{ t.lead }}</p>
     </div>
   </section>
   <section style="max-width:1200px;margin:0 auto;padding:24px 16px 72px;display:flex;flex-direction:column;gap:32px">
-    <nav aria-label="{{ t.cats }}" style="display:flex;gap:8px;overflow-x:auto;margin:0 -16px;padding:0 16px 4px">
-      <span aria-current="page" style="flex:none;display:inline-flex;align-items:center;height:40px;padding:0 16px;border-radius:999px;border:1px solid #034c30;background:#034c30;color:#fff;font-size:14px;font-weight:600">{{ t.all }}</span>
+    <nav aria-label="{{ t.cats }}" data-chips="1" data-drag="1" style="display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none;scroll-behavior:smooth;margin:0 -16px;padding:0 16px 4px">
+      <span aria-current="page" style="flex:none;display:inline-flex;align-items:center;height:40px;padding:0 16px;border-radius:999px;border:1px solid #23382f;background:#23382f;color:#fff;font-size:14px;font-weight:600">{{ t.all }}</span>
       <sc-for list="{{ chips }}" as="f" hint-placeholder-count="3">
-        <a href="{{ f.href }}" style="flex:none;display:inline-flex;align-items:center;height:40px;padding:0 16px;border-radius:999px;border:1px solid #034c30;background:#fff;color:#034c30;font-size:14px;font-weight:600" style-hover="background:#ebefea;color:#034c30">{{ f.label }}</a>
+        <a href="{{ f.href }}" style="flex:none;display:inline-flex;align-items:center;height:40px;padding:0 16px;border-radius:999px;border:1px solid #23382f;background:#fff;color:#23382f;font-size:14px;font-weight:600" style-hover="background:#ebefea;color:#23382f">{{ f.label }}</a>
       </sc-for>
     </nav>
     <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:20px;align-items:stretch">

@@ -8,38 +8,37 @@
 <body>
 <x-dc>
 <div style="font-family:'Maven Pro',system-ui,sans-serif">
-<sc-if value="{{ showCta }}" hint-placeholder-val="{{ true }}"><section style="background:radial-gradient(ellipse 90% 120% at 50% 40%, #0f6c46 0%, #034c30 55%, #023a24 100%);color:#fff;position:relative;overflow:hidden">
-  <img src="img/flower-white.svg" alt="" style="position:absolute;left:50%;top:50%;width:560px;transform:translate(-50%,-50%);opacity:0.15;pointer-events:none">
+<sc-if value="{{ showCta }}" hint-placeholder-val="{{ true }}"><section style="background:radial-gradient(ellipse 90% 120% at 50% 40%, #3a5a4b 0%, #23382f 55%, #16241e 100%);color:#fff;position:relative;overflow:hidden">
+  <img src="img/burst-copper.png" alt="" style="position:absolute;left:50%;top:50%;width:560px;transform:translate(-50%,-50%);opacity:0.4;pointer-events:none">
   <div style="position:relative;max-width:1200px;margin:0 auto;padding:72px 16px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:24px">
     <p style="margin:0;font-family:'Maven Pro',Arial,sans-serif;font-weight:400;font-size:clamp(22px,4vw,30px);letter-spacing:0.24em;text-transform:uppercase;line-height:1.3">{{ ctaTitle }}</p>
     <p style="margin:0;font-size:17px;color:#ebefea">{{ t.more }}</p>
-    <a href="https://ig.me/m/source_mainpage" style="display:inline-flex;align-items:center;justify-content:center;height:52px;padding:0 32px;background:#fff;color:#034c30;border-radius:6px;font-family:'Maven Pro',Arial,sans-serif;font-weight:600;font-size:14px;letter-spacing:0.14em;text-transform:uppercase;text-decoration:none" style-hover="background:#ebefea;color:#034c30">{{ ctaLabel }}</a>
+    <a href="https://ig.me/m/source_mainpage" style="display:inline-flex;align-items:center;justify-content:center;height:52px;padding:0 32px;background:#fff;color:#23382f;border-radius:6px;font-family:'Maven Pro',Arial,sans-serif;font-weight:600;font-size:14px;letter-spacing:0.14em;text-transform:uppercase;text-decoration:none" style-hover="background:#ebefea;color:#23382f">{{ ctaLabel }}</a>
   </div>
 </section></sc-if>
-<footer id="kontakt" style="background:#063925;color:#ebefea">
+<footer id="kontakt" style="background:#182820;color:#ebefea">
   <div data-screen-label="Instagram objave" style="max-width:1200px;margin:0 auto;padding:48px 16px 8px;display:flex;flex-direction:column;gap:20px">
     <div style="display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap">
       <a href="https://www.instagram.com/source_mainpage/" style="display:flex;align-items:center;gap:12px;color:#fff">
-        <img src="img/logo.png" alt="" style="width:44px;height:44px;border-radius:50%;animation:spin 120s linear infinite">
+        <span style="width:44px;height:44px;border-radius:50%;border:1px solid rgba(255,255,255,0.3);display:flex;align-items:center;justify-content:center;flex:none"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.5" r="1" fill="#fff"></circle></svg></span>
         <span style="display:flex;flex-direction:column;line-height:1.3"><span style="font-family:'Maven Pro',Arial,sans-serif;font-weight:600;font-size:15px;letter-spacing:0.12em">source_mainpage</span><span style="font-size:13px;color:#8fbeaa">{{ t.latest }}</span></span>
       </a>
-      <a href="https://www.instagram.com/source_mainpage/" style="display:inline-flex;align-items:center;gap:8px;height:44px;padding:0 20px;background:#fff;color:#034c30;border-radius:6px;font-family:'Maven Pro',Arial,sans-serif;font-weight:600;font-size:12px;letter-spacing:0.14em;text-transform:uppercase" style-hover="background:#ebefea;color:#034c30"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"></circle></svg> {{ t.follow }}</a>
+      <a href="https://www.instagram.com/source_mainpage/" style="display:inline-flex;align-items:center;gap:8px;height:44px;padding:0 20px;background:#fff;color:#23382f;border-radius:6px;font-family:'Maven Pro',Arial,sans-serif;font-weight:600;font-size:12px;letter-spacing:0.14em;text-transform:uppercase" style-hover="background:#ebefea;color:#23382f"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"></circle></svg> {{ t.follow }}</a>
     </div>
     <div style="display:grid;grid-auto-flow:column;grid-auto-columns:minmax(140px,1fr);gap:8px;overflow-x:auto;margin:0 -16px;padding:0 16px 4px;scroll-snap-type:x mandatory;scrollbar-width:none">
       <sc-for list="{{ igPosts }}" as="g" hint-placeholder-count="0">
-        <a href="https://www.instagram.com/source_mainpage/" aria-label="Instagram {{ g.date }}" style="position:relative;aspect-ratio:1;scroll-snap-align:start;background:radial-gradient(circle at 50% 35%, #0f6c46, #023a24);display:flex;align-items:center;justify-content:center;overflow:hidden;color:#fff" style-hover="opacity:0.85;color:#fff">
+        <a href="https://www.instagram.com/source_mainpage/" aria-label="Instagram {{ g.date }}" style="position:relative;aspect-ratio:1;scroll-snap-align:start;background:radial-gradient(circle at 50% 35%, #3a5a4b, #16241e);display:flex;align-items:center;justify-content:center;overflow:hidden;color:#fff" style-hover="opacity:0.85;color:#fff">
           <dc-import name="Img" src="{{ g.img }}" fit="contain" style="width:88%;height:88%" hint-size="88%,88%"></dc-import>
           <span style="position:absolute;top:8px;right:8px;color:#fff;opacity:0.85"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"></circle></svg></span>
-          <span style="position:absolute;left:0;bottom:0;background:rgba(2,40,25,0.85);font-family:'JetBrains Mono',monospace;font-size:10px;color:#8fbeaa;padding:3px 6px">{{ g.date }}</span>
+          <span style="position:absolute;left:0;bottom:0;background:rgba(22,36,30,0.85);font-family:'JetBrains Mono',monospace;font-size:10px;color:#8fbeaa;padding:3px 6px">{{ g.date }}</span>
         </a>
       </sc-for>
     </div>
   </div>
   <div style="max-width:1200px;margin:0 auto;padding:56px 16px 32px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:32px">
     <div style="display:flex;flex-direction:column;gap:16px">
-      <div style="display:flex;align-items:center;gap:10px"><img src="img/logo.png" alt="" style="width:40px;height:40px;display:block;border-radius:50%"><span style="font-family:'Maven Pro',Arial,sans-serif;font-weight:600;font-size:15px;letter-spacing:0.4em;text-transform:uppercase">Source</span></div>
+            <img src="img/k-c12-potpis-w.png" alt="Source — {{ t.sig }}" style="width:160px;height:auto;display:block">
       <p style="margin:0;font-size:15px;color:#8fbeaa">{{ t.tag }}</p>
-      <img src="img/k-c12-potpis-w.png" alt="{{ t.sig }}" style="width:140px;height:auto;display:block">
       <div style="display:flex;gap:10px">
         <a href="https://www.instagram.com/source_mainpage/" aria-label="Instagram" style="width:44px;height:44px;border-radius:50%;border:1px solid rgba(255,255,255,0.3);display:flex;align-items:center;justify-content:center;color:#fff" style-hover="border-color:#c0e448;color:#c0e448"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"></circle></svg></a>
         <a href="https://www.facebook.com/search/top?q=source%20proizvodi" aria-label="{{ t.fb }}" style="width:44px;height:44px;border-radius:50%;border:1px solid rgba(255,255,255,0.3);display:flex;align-items:center;justify-content:center;color:#fff" style-hover="border-color:#c0e448;color:#c0e448"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-7.5h2.6l.4-3h-3V8.6c0-.9.3-1.5 1.5-1.5h1.6V4.4c-.3 0-1.2-.1-2.3-.1-2.3 0-3.8 1.4-3.8 3.9v2.3H7.9v3h2.6V21z"></path></svg></a>
@@ -67,7 +66,7 @@
 </footer>
 <sc-if value="{{ showSticky }}" hint-placeholder-val="{{ true }}">
   <div style="position:fixed;left:0;right:0;bottom:0;z-index:30;padding:12px 16px calc(12px + env(safe-area-inset-bottom));background:rgba(255,255,255,0.96);border-top:1px solid #ebefea">
-    <a href="https://ig.me/m/source_mainpage" style="display:flex;align-items:center;justify-content:center;gap:10px;height:52px;background:#034c30;color:#fff;border-radius:6px;font-family:'Maven Pro',Arial,sans-serif;font-weight:600;font-size:14px;letter-spacing:0.14em;text-transform:uppercase;text-decoration:none">{{ ctaLabel }} <span style="font-family:'Maven Pro',sans-serif;font-weight:400;letter-spacing:0;text-transform:none;color:#8fbeaa;font-size:13px">· Instagram DM</span></a>
+    <a href="https://ig.me/m/source_mainpage" style="display:flex;align-items:center;justify-content:center;gap:10px;height:52px;background:#23382f;color:#fff;border-radius:6px;font-family:'Maven Pro',Arial,sans-serif;font-weight:600;font-size:14px;letter-spacing:0.14em;text-transform:uppercase;text-decoration:none">{{ ctaLabel }} <span style="font-family:'Maven Pro',sans-serif;font-weight:400;letter-spacing:0;text-transform:none;color:#8fbeaa;font-size:13px">· Instagram DM</span></a>
   </div>
 </sc-if>
 </div>
@@ -89,7 +88,7 @@ class Component extends DCLogic {
       ctaTitle: this.props.ctaTitle ?? (en ? 'Request a quote' : 'Zatražite ponudu'),
       ctaLabel: this.props.ctaLabel ?? (en ? 'Request a quote' : 'Zatražite ponudu'),
       showSticky: this.state.w < 900 && (this.props.sticky ?? true),
-      pages: [['Početna','Home','Pocetna.dc.html'],['O nama','About','O-nama.dc.html'],['Proizvodi','Products','Proizvodi.dc.html'],['Blog','Blog','Blog.dc.html']].map(([a,b,f]) => ({ label: en ? b : a, href: S.href(f) })),
+      pages: [['Početna','Home','Pocetna.dc.html'],['Source','Source','Source.dc.html'],['Proizvodi','Products','Proizvodi.dc.html'],['Blog','Blog','Blog.dc.html']].map(([a,b,f]) => ({ label: en ? b : a, href: S.href(f) })),
       products: Object.keys(P).map(k => ({ label: S.L(P[k].name), href: S.href(P[k].file) }))
     };
   }

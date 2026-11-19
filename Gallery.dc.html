@@ -13,7 +13,7 @@
     <sc-for list="{{ tiles }}" as="k" hint-placeholder-count="0">
       <button onClick="{{ k.open }}" aria-label="{{ k.aria }}" style="position:relative;grid-column:{{ k.col }};aspect-ratio:{{ k.ratio }};padding:0;border:0;background:{{ bg }};cursor:zoom-in;overflow:hidden">
         <dc-import name="Img" src="{{ k.src }}" alt="{{ k.alt }}" fit="{{ fit }}" bg="{{ bg }}" style="position:absolute;inset:0" hint-size="100%,100%"></dc-import>
-        <sc-if value="{{ k.more }}" hint-placeholder-val="{{ false }}"><span style="position:absolute;inset:0;background:rgba(3,76,48,0.72);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Maven Pro',Arial,sans-serif;font-size:32px;letter-spacing:0.08em">{{ k.more }}</span></sc-if>
+        <sc-if value="{{ k.more }}" hint-placeholder-val="{{ false }}"><span style="position:absolute;inset:0;background:rgba(35,56,47,0.72);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Maven Pro',Arial,sans-serif;font-size:32px;letter-spacing:0.08em">{{ k.more }}</span></sc-if>
       </button>
     </sc-for>
   </div>
@@ -25,7 +25,7 @@ class Component extends DCLogic {
     const S = window.SL, items = this.props.items || [], extra = items.length - 3;
     const fit = this.props.fit || 'cover';
     return {
-      label: this.props.label || '', ol: this.props.tone === 'dark' ? 'rgba(192,228,72,0.45)' : 'rgba(3,76,48,0.45)', labelColor: this.props.tone === 'dark' ? '#8fbeaa' : '#034c30', fit, bg: fit === 'contain' ? '#fff' : '#ebefea',
+      label: this.props.label || '', ol: this.props.tone === 'dark' ? 'rgba(192,228,72,0.45)' : 'rgba(35,56,47,0.45)', labelColor: this.props.tone === 'dark' ? '#8fbeaa' : '#23382f', fit, bg: fit === 'contain' ? '#fff' : '#ebefea',
       tiles: items.slice(0, 3).map((it, i) => ({ ...it, col: i === 0 ? '1 / -1' : 'auto', ratio: i === 0 ? '16/9' : '4/5', more: i === 2 && extra > 0 ? '+' + extra : '', aria: it.alt + (i === 2 && extra > 0 ? ' (+' + extra + ')' : ''),
         open: (e) => S && S.lightbox(it.src, it.alt, e.currentTarget, items, i) }))
     };

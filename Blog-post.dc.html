@@ -12,31 +12,31 @@
 <link href="https://fonts.googleapis.com/css2?family=Maven+Pro:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400&amp;display=swap" rel="stylesheet">
 <link rel="icon" href="img/favicon-32.png" sizes="32x32">
 <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
-<script src="site.js"></script>
+<script src="site.js?v=11"></script>
 <script src="posts.js"></script>
 <style>
 @keyframes spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
 @media (prefers-reduced-motion:reduce){img[src$="flower-white.svg"]{animation:none!important}}
 body{margin:0;background:#fff;color:#191b1c;font-family:'Maven Pro',system-ui,sans-serif;font-size:17px;line-height:1.6}
-a{color:#034c30;text-decoration:none}a:hover{color:#206549}*{box-sizing:border-box}
-:focus-visible{outline:2px solid #034c30;outline-offset:2px}
+a{color:#23382f;text-decoration:none}a:hover{color:#3a5a4b}*{box-sizing:border-box}
+:focus-visible{outline:2px solid #23382f;outline-offset:2px}
 </style>
 </helmet>
 <div>
 <dc-import name="SiteHeader" active="blog" hint-size="100%,0px"></dc-import>
 <main>
 <article data-screen-label="Blog post">
-  <section data-screen-label="Banner" style="background:radial-gradient(ellipse 90% 120% at 50% 40%, #0f6c46 0%, #034c30 55%, #023a24 100%);color:#fff;position:relative;overflow:hidden">
-    <img src="img/flower-white.svg" alt="" style="position:absolute;right:-200px;top:-180px;width:560px;opacity:0.15;pointer-events:none;animation:spin 120s linear infinite">
+  <section data-screen-label="Banner" style="background:radial-gradient(ellipse 90% 120% at 50% 40%, #3a5a4b 0%, #23382f 55%, #16241e 100%);color:#fff;position:relative;overflow:hidden">
+    <img src="img/burst-copper.png" alt="" style="position:absolute;right:-200px;top:-180px;width:560px;opacity:0.4;pointer-events:none;animation:spin 120s linear infinite">
     <div style="position:relative;max-width:1200px;margin:0 auto;padding:96px 16px 72px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:40px 56px;align-items:center">
       <header style="display:flex;flex-direction:column;gap:20px">
         <dc-import name="Breadcrumbs" items="{{ crumbs }}" hint-size="100%,32px"></dc-import>
         <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
-          <a href="{{ p.catHref }}" style="display:inline-flex;align-items:center;height:28px;padding:0 12px;border-radius:999px;background:rgba(3,76,48,0.8);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,0.45);color:#fff;font-size:12px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase" style-hover="color:#fff;border-color:#fff">{{ p.cat }}</a>
+          <a href="{{ p.catHref }}" style="display:inline-flex;align-items:center;height:28px;padding:0 12px;border-radius:999px;background:rgba(35,56,47,0.8);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,0.45);color:#fff;font-size:12px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase" style-hover="color:#fff;border-color:#fff">{{ p.cat }}</a>
           <time datetime="{{ p.date }}" style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#8fbeaa">{{ p.dateLabel }}</time>
         </div>
-        <h1 style="margin:0;font-family:'Maven Pro',Arial,sans-serif;font-weight:400;font-size:clamp(28px,5.4vw,46px);line-height:1.25;letter-spacing:0.22em;text-transform:uppercase;color:#fff;text-wrap:balance">{{ p.title }}</h1>
-        <p style="margin:0;font-size:18px;color:#ebefea;max-width:34em;text-wrap:pretty;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden">{{ p.lead }}</p>
+        <h1 style="margin:0;font-size:clamp(30px,calc(1.7vw + 23px),44px);line-height:1.2;letter-spacing:calc(0.06em + 0.4vw);font-family:'Maven Pro',Arial,sans-serif;font-weight:400;text-transform:uppercase;color:#fff;text-wrap:balance">{{ p.title }}</h1>
+        <p style="margin:0;font-size:clamp(18px,calc(0.25vw + 17px),20px);line-height:1.6;color:#fff;max-width:36em;text-wrap:pretty;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden">{{ p.lead }}</p>
       </header>
       <figure style="margin:12px;aspect-ratio:{{ p.heroRatio }};position:relative;overflow:hidden;background:{{ p.heroBg }};box-shadow:{{ p.heroShadow }};outline:1px solid rgba(192,228,72,0.45);outline-offset:12px">
         <sc-for list="{{ heroList }}" as="h" hint-placeholder-count="0"><dc-import name="Img" src="{{ h.src }}" alt="{{ h.alt }}" fit="{{ h.fit }}" pad="{{ h.pad }}" bg="{{ p.heroBg }}" style="position:absolute;inset:0" hint-size="100%,100%"></dc-import></sc-for>
@@ -50,7 +50,7 @@ a{color:#034c30;text-decoration:none}a:hover{color:#206549}*{box-sizing:border-b
     <sc-for list="{{ p.paras }}" as="x" hint-placeholder-count="2">
       <p style="margin:0;font-size:18px;line-height:1.75;text-wrap:pretty">{{ x }}</p>
     </sc-for>
-    <sc-if value="{{ p.quote }}" hint-placeholder-val="{{ false }}"><blockquote style="margin:8px 0;padding-left:20px;border-left:2px solid #034c30;font-style:italic;font-size:clamp(19px,2.6vw,23px);line-height:1.5;color:#034c30">{{ p.quote }}</blockquote></sc-if>
+    <sc-if value="{{ p.quote }}" hint-placeholder-val="{{ false }}"><blockquote style="margin:8px 0;padding-left:20px;border-left:2px solid #23382f;font-style:italic;font-size:clamp(19px,2.6vw,23px);line-height:1.5;color:#23382f">{{ p.quote }}</blockquote></sc-if>
     <sc-if value="{{ p.spectrum }}" hint-placeholder-val="{{ false }}">
       <figure style="margin:8px 0;display:flex;flex-direction:column;gap:8px">
         <div style="height:16px;background:linear-gradient(90deg,#78c8e8,#ebefea 50%,#e46024 80%,#c81818)"></div>
@@ -58,8 +58,8 @@ a{color:#034c30;text-decoration:none}a:hover{color:#206549}*{box-sizing:border-b
       </figure>
     </sc-if>
     <sc-if value="{{ rel.show }}" hint-placeholder-val="{{ false }}">
-      <a href="{{ rel.href }}" style="background:#ebefea;padding:20px;border-left:2px solid #034c30;display:flex;flex-direction:column;gap:8px;color:#191b1c" style-hover="background:#e2e8e1;color:#191b1c">
-        <span style="font-family:'Maven Pro',Arial,sans-serif;font-weight:600;font-size:13px;letter-spacing:0.15em;text-transform:uppercase;color:#034c30">{{ rel.title }} →</span>
+      <a href="{{ rel.href }}" style="background:#ebefea;padding:20px;border-left:2px solid #23382f;display:flex;flex-direction:column;gap:8px;color:#191b1c" style-hover="background:#e2e8e1;color:#191b1c">
+        <span style="font-family:'Maven Pro',Arial,sans-serif;font-weight:600;font-size:13px;letter-spacing:0.15em;text-transform:uppercase;color:#23382f">{{ rel.title }} →</span>
         <span style="font-size:16px">{{ rel.text }}</span>
       </a>
     </sc-if>
@@ -114,7 +114,7 @@ class Component extends DCLogic {
         : { loop: 'Video bez zvuka, u petlji.', cool: '− hladni tonovi · negativno', warm: 'topli tonovi · pozitivno +', relProd: 'Povezan proizvod', more: 'Ostale informacije, cena i porudžbine u DM.', cta: 'Zatražite ponudu', moreCat: 'Još iz kategorije' },
       crumbs: S.crumbs([['Početna','Home','Pocetna.dc.html'],['Blog','Blog','Blog.dc.html'],[c.key, c.en, 'Kategorija.dc.html', 'cat=' + c.slug, c.slug],[r.title, r.titleEn, 'Blog-post.dc.html', 'slug=' + r.slug, r.slug]]),
       p: { title: en ? r.titleEn : r.title, cat: en ? c.en : c.key, catHref: S.href('Kategorija.dc.html', 'cat=' + c.slug), date: r.date, dateLabel: S.fmtDate(r.date),
-        lead: (en ? r.bodyEn[0] : r.body[0]), heroBg: line ? 'rgba(2,40,25,0.25)' : '#fff', heroRatio: line ? '3/2' : '4/3', heroShadow: line ? 'none' : '0 24px 60px rgba(1,25,15,0.45)', hero: r.hero, heroAlt: en ? r.heroAltEn : r.heroAlt, video: r.video || '', paras: en ? r.bodyEn : r.body, quote: en ? (r.quoteEn || '') : (r.quote || ''), spectrum: !!r.spectrum,
+        lead: (en ? r.bodyEn[0] : r.body[0]), heroBg: line ? 'rgba(22,36,30,0.25)' : '#fff', heroRatio: line ? '3/2' : '4/3', heroShadow: line ? 'none' : '0 24px 60px rgba(14,23,19,0.45)', hero: r.hero, heroAlt: en ? r.heroAltEn : r.heroAlt, video: r.video || '', paras: en ? r.bodyEn : r.body, quote: en ? (r.quoteEn || '') : (r.quote || ''), spectrum: !!r.spectrum,
         link: !!r.link, linkHref: r.link ? S.href(r.link.href) : '', linkLabel: r.link ? (en ? r.linkLabelEn || r.link.label : r.link.label) : '' },
       rel: relP ? { show: true, href: S.href('Blog-post.dc.html', 'slug=' + relP.slug), title: en ? relP.titleEn : relP.title, text: en ? (r.relatedEn || relP.bodyEn[0]) : (r.related || relP.body[0]) } : { show: false },
       heroList: [hero], prodKey: r.product === 'source-home' ? 'source-home,procena' : r.product,

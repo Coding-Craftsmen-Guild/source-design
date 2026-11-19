@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>Source — Uredjaji za manipulisanje životnom energijom</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Maven+Pro:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400&amp;display=swap" rel="stylesheet">
+<link rel="icon" href="img/favicon-32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+<script src="site.js?v=11"></script>
+<script src="posts.js"></script>
+<style>
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:#fff;color:#191b1c;font-family:'Maven Pro',system-ui,sans-serif;font-size:17px;line-height:1.6}
+a{color:#23382f;text-decoration:none}
+a:hover{color:#3a5a4b}
+*{box-sizing:border-box}
+:focus-visible{outline:2px solid #23382f;outline-offset:2px}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important}}
+</style>
+</helmet>
+
+<div style="min-height:100vh;background:#fff">
+<dc-import name="SiteHeader" active="source" active="pocetna" hint-size="100%,0px"></dc-import>
+<main>
+
+<section data-screen-label="3.1 Hero" style="background:radial-gradient(ellipse 90% 120% at 50% 40%, #3a5a4b 0%, #23382f 55%, #16241e 100%);color:#fff;position:relative;overflow:hidden">
+  {{ heroFlower }}
+  <div style="position:relative;max-width:1200px;margin:0 auto;padding:120px 16px 40px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:40px;align-items:center">
+    <div style="display:flex;flex-direction:column;gap:24px">
+      <p style="margin:0;font-family:'Maven Pro',Arial,sans-serif;font-weight:500;font-size:13px;letter-spacing:0.6em;text-transform:uppercase;color:#c0e448">Source</p>
+      <h1 style="margin:0;font-size:clamp(36px,calc(2.5vw + 26px),56px);line-height:1.15;letter-spacing:calc(0.08em + 0.6vw);font-family:'Maven Pro',Arial,sans-serif;font-weight:400;text-transform:uppercase;text-wrap:balance;color:#fff">{{ t.h1 }}</h1>
+      <p style="margin:0;font-size:clamp(18px,calc(0.25vw + 17px),20px);line-height:1.6;color:#fff;max-width:36em;text-wrap:pretty">{{ t.sub }}</p>
+      <div style="display:flex;flex-wrap:wrap;gap:12px;padding-top:8px">
+        <a href="https://ig.me/m/source_mainpage" style="display:inline-flex;align-items:center;justify-content:center;height:48px;padding:0 24px;background:#fff;color:#23382f;border-radius:6px;font-family:'Maven Pro',Arial,sans-serif;font-weight:600;font-size:14px;letter-spacing:0.14em;text-transform:uppercase" style-hover="background:#ebefea;color:#23382f">{{ t.cta }}</a>
+        <a href="{{ h.products }}" style="display:inline-flex;align-items:center;justify-content:center;height:48px;padding:0 24px;border:1px solid rgba(255,255,255,0.6);color:#fff;border-radius:6px;font-family:'Maven Pro',Arial,sans-serif;font-weight:600;font-size:14px;letter-spacing:0.14em;text-transform:uppercase" style-hover="border-color:#fff;color:#fff">{{ t.view }}</a>
+      </div>
+    </div>
+
+  </div>
+  
+</section>
+
+<section data-screen-label="3.2 Problem" style="background:#fff;overflow:hidden;position:relative;isolation:isolate">
+  <div aria-hidden="true" style="position:absolute;inset:0;z-index:-1;pointer-events:none;background-image:url(img/bg-k-b01-hero-suma-g.png);background-repeat:no-repeat;background-attachment:fixed;background-size:auto 100vh;background-position:right top;-webkit-mask-image:linear-gradient(45deg, transparent 15%, #000 70%);mask-image:linear-gradient(45deg, transparent 15%, #000 70%)"></div>
+  <div style="max-width:1200px;margin:0 auto;padding:64px 16px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:40px;align-items:center">
+    <div style="display:flex;flex-direction:column;gap:20px;align-items:flex-start">
+      <dc-import name="SectionTitle" title="{{ t.h2a }}" eyebrow="{{ t.e1 }}" hint-size="100%,48px"></dc-import>
+      <p style="margin:0;text-wrap:pretty">{{ t.b1 }}</p>
+      <a href="{{ h.post1 }}" style="display:inline-flex;align-items:center;gap:10px;height:48px;padding:0 24px;border:1px solid #23382f;border-radius:6px;color:#23382f;font-family:'Maven Pro',Arial,sans-serif;font-weight:600;font-size:13px;letter-spacing:0.14em;text-transform:uppercase" style-hover="background:#23382f;color:#fff">{{ t.more }} <span aria-hidden="true">→</span></a>
+    </div>
+    <figure style="margin:0;position:relative;aspect-ratio:16/10">
+      <img src="img/k-c03-emf-dom-g.png" alt="{{ t.emfAlt }}" style="width:100%;height:100%;object-fit:contain;display:block">
+      
+    </figure>
+  </div>
+</section>
+
+<dc-import name="ProductsRow" title="{{ t.h2b }}" eyebrow="{{ t.e2 }}" hint-size="100%,720px"></dc-import>
+
+<section data-screen-label="3.4 Procena prostora" style="background:#fff;overflow:hidden;position:relative;isolation:isolate">
+  <div aria-hidden="true" style="position:absolute;inset:0;z-index:-1;pointer-events:none;background-image:url(img/bg-k-c01-torus-g.png);background-repeat:no-repeat;background-attachment:fixed;background-size:auto 100vh;background-position:left top;-webkit-mask-image:linear-gradient(-45deg, transparent 15%, #000 70%);mask-image:linear-gradient(-45deg, transparent 15%, #000 70%)"></div>
+  <div style="max-width:1200px;margin:0 auto;padding:64px 16px;display:flex;flex-direction:column;gap:40px">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:40px;align-items:center">
+      <div style="display:flex;flex-direction:column;gap:20px">
+        <dc-import name="SectionTitle" title="{{ t.h2c }}" eyebrow="{{ t.e3 }}" hint-size="100%,48px"></dc-import>
+        <p style="margin:0;text-wrap:pretty">{{ t.b3 }}</p>
+      </div>
+      <div style="width:100%;max-width:520px;justify-self:center"><dc-import name="Gallery" items="{{ sketches }}" label="{{ t.sketches }}" hint-size="100%,420px"></dc-import></div>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:12px">
+      <a href="https://ig.me/m/source_mainpage" style="display:inline-flex;align-items:center;justify-content:center;height:48px;padding:0 28px;background:#23382f;color:#fff;border-radius:6px;font-family:'Maven Pro',Arial,sans-serif;font-weight:600;font-size:13px;letter-spacing:0.14em;text-transform:uppercase" style-hover="background:#182820;color:#fff">{{ t.send }}</a>
+      <a href="{{ h.procena }}" style="display:inline-flex;align-items:center;justify-content:center;height:48px;padding:0 28px;border:1px solid #23382f;color:#23382f;border-radius:6px;font-family:'Maven Pro',Arial,sans-serif;font-weight:600;font-size:13px;letter-spacing:0.14em;text-transform:uppercase" style-hover="background:#23382f;color:#fff">{{ t.how }}</a>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="3.6 Iskustva" style="background:#ebefea;overflow:hidden;position:relative;isolation:isolate">
+  <div aria-hidden="true" style="position:absolute;inset:0;z-index:-1;pointer-events:none;background-image:url(img/bg-k-b08-aura-torus-g.png);background-repeat:no-repeat;background-attachment:fixed;background-size:auto 100vh;background-position:right top;-webkit-mask-image:linear-gradient(45deg, transparent 15%, #000 70%);mask-image:linear-gradient(45deg, transparent 15%, #000 70%)"></div>
+  <div style="max-width:1200px;margin:0 auto;padding:64px 16px 24px">
+    <dc-import name="SectionTitle" title="{{ t.h2isk }}" hint-size="100%,48px"></dc-import>
+  </div>
+  <div onMouseEnter="{{ pauseT }}" onMouseLeave="{{ resumeT }}" onTouchStart="{{ pauseT }}" onTouchEnd="{{ resumeTLater }}" style="padding:16px 0 24px">
+    <div ref="{{ tRef }}" style="display:flex;gap:20px;width:max-content;will-change:transform">
+      <sc-for list="{{ testimonialsLoop }}" as="q" hint-placeholder-count="3">
+        <figure style="margin:0;width:min(84vw,360px);flex:none;background:radial-gradient(ellipse 120% 90% at 50% 30%, #3a5a4b 0%, #23382f 55%, #16241e 100%);color:#fff;padding:28px 24px;display:flex;flex-direction:column;gap:20px;min-height:240px">
+          <span aria-hidden="true" style="font-family:'Maven Pro',Arial,sans-serif;font-size:48px;line-height:0.6;color:#c89858">“</span>
+          <blockquote style="margin:0;font-size:18px;line-height:1.55;flex:1">{{ q.q }}</blockquote>
+          <figcaption style="display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:13px;color:#8fbeaa"><span>{{ q.who }}</span><span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#c0e448">{{ q.note }}</span></figcaption>
+        </figure>
+      </sc-for>
+    </div>
+  </div>
+  <div style="max-width:1200px;margin:0 auto;padding:0 16px 64px;display:flex;justify-content:center">
+    <a href="https://www.instagram.com/source_mainpage/" style="display:inline-flex;align-items:center;gap:10px;height:48px;padding:0 24px;border:1px solid #23382f;border-radius:6px;color:#23382f;font-family:'Maven Pro',Arial,sans-serif;font-weight:600;font-size:13px;letter-spacing:0.14em;text-transform:uppercase" style-hover="background:#23382f;color:#fff">{{ t.iskLink }} <span aria-hidden="true">→</span></a>
+  </div>
+</section>
+
+<section data-screen-label="3.7 Blog" style="background:#fff;overflow:hidden;position:relative;isolation:isolate">
+  <div aria-hidden="true" style="position:absolute;inset:0;z-index:-1;pointer-events:none;background-image:url(img/bg-k-b03-energija-g.png);background-repeat:no-repeat;background-attachment:fixed;background-size:auto 100vh;background-position:left top;-webkit-mask-image:linear-gradient(-45deg, transparent 15%, #000 70%);mask-image:linear-gradient(-45deg, transparent 15%, #000 70%)"></div>
+  <div style="max-width:1200px;margin:0 auto;padding:64px 16px;display:flex;flex-direction:column;gap:32px">
+    <dc-import name="SectionTitle" title="Blog" hint-size="100%,48px"></dc-import>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:20px;align-items:stretch">
+      <sc-for list="{{ posts }}" as="p" hint-placeholder-count="3">
+        <dc-import name="Card" style="height:100%" href="{{ p.href }}" img="{{ p.img }}" img-alt="{{ p.alt }}" ratio="16/9" cat="{{ p.cat }}" title="{{ p.title }}" text="{{ p.ex }}" date="{{ p.date }}" meta="{{ t.read }}" hint-size="100%,460px"></dc-import>
+      </sc-for>
+    </div>
+    <div style="display:flex;justify-content:center">
+      <a href="{{ h.blog }}" style="display:inline-flex;align-items:center;gap:10px;height:48px;padding:0 28px;border:1px solid #23382f;border-radius:6px;color:#23382f;font-family:'Maven Pro',Arial,sans-serif;font-weight:600;font-size:13px;letter-spacing:0.14em;text-transform:uppercase" style-hover="background:#23382f;color:#fff">{{ t.allPosts }} <span aria-hidden="true">→</span></a>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="3.8 Završni CTA" style="background:radial-gradient(ellipse 90% 120% at 50% 40%, #3a5a4b 0%, #23382f 55%, #16241e 100%);color:#fff;position:relative;overflow:hidden">
+  <img src="img/burst-copper.png" alt="" style="position:absolute;left:50%;top:50%;width:640px;transform:translate(-50%,-50%);opacity:0.4;pointer-events:none">
+  <div style="position:relative;max-width:1200px;margin:0 auto;padding:80px 16px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:28px">
+    <p style="margin:0;font-size:18px;color:#ebefea;text-wrap:pretty">{{ t.ctaBody }}</p>
+    <a href="https://ig.me/m/source_mainpage" style="display:inline-flex;align-items:center;justify-content:center;height:52px;padding:0 32px;background:#fff;color:#23382f;border-radius:6px;font-family:'Maven Pro',Arial,sans-serif;font-weight:600;font-size:14px;letter-spacing:0.14em;text-transform:uppercase" style-hover="background:#ebefea;color:#23382f">{{ t.cta }}</a>
+    <p style="margin:0;font-family:'Maven Pro',Arial,sans-serif;font-weight:500;font-size:14px;letter-spacing:0.6em;text-transform:uppercase;color:#8fbeaa;padding-left:0.6em">Source</p>
+  </div>
+</section>
+
+</main>
+<dc-import name="SiteFooter" cta="{{ false }}" sticky="{{ sticky }}" marks="{{ marks }}" hint-size="100%,600px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;showReviewMarks&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Pregled&quot;},&quot;stickyCta&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Mobilni&quot;},&quot;autoplay&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Proizvodi&quot;},&quot;flowerMotif&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Motiv&quot;},&quot;rotateFlower&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Motiv&quot;}}">
+class Component extends DCLogic {
+  state = { w: window.innerWidth, ready: !!(window.SL && window.SOURCE_POSTS) };
+  trackRef = React.createRef();
+  tRef = React.createRef();
+  paused = false; x = 0; pausedT = false; xT = 0;
+  componentDidMount() {
+    this.onR = () => this.setState({ w: window.innerWidth });
+    window.addEventListener('resize', this.onR);
+    const go = () => { this.setState({ ready: true }); this.seo(); };
+    if (this.state.ready) this.seo(); else this.wt = setInterval(() => { if (window.SL && window.SOURCE_POSTS) { clearInterval(this.wt); go(); } }, 30);
+    const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let last = performance.now();
+    const tick = (t) => {
+      const el = this.trackRef.current, dt = Math.min(64, t - last); last = t;
+      if (el && !reduce && (this.props.autoplay ?? true)) {
+        const half = el.scrollWidth / 2;
+        if (!this.paused) this.x += dt * 0.015;
+        if (this.x >= half) this.x -= half;
+        el.style.transform = 'translateX(' + (this.x - half) + 'px)';
+      }
+      const tl = this.tRef.current;
+      if (tl && !reduce) {
+        const h2 = tl.scrollWidth / 2;
+        if (!this.pausedT) this.xT += dt * 0.0125;
+        if (this.xT >= h2) this.xT -= h2;
+        tl.style.transform = 'translateX(' + (-this.xT) + 'px)';
+      }
+      this.raf = requestAnimationFrame(tick);
+    };
+    this.raf = requestAnimationFrame(tick);
+  }
+  componentWillUnmount() { window.removeEventListener('resize', this.onR); cancelAnimationFrame(this.raf); clearTimeout(this.rt); clearTimeout(this.rtT); clearInterval(this.wt); }
+  seo() {
+    const S = window.SL;
+    S.seo({ crumbs: S.crumbs([['Početna','Home','Pocetna.dc.html'],['Source','Source','Source.dc.html']]), paths: ['/source', '/en/source'], image: 'img/k-c01-torus-w.png',
+      title: S.en ? 'Source — devices for the energy of your space and body' : 'Source — Uredjaji za manipulisanje životnom energijom',
+      desc: S.en ? 'Source home and ShAM by Multidimensional Artist Ćetko Ćorluka. Free space assessment from a sketch. Orders via Instagram DM.' : 'Source home i ShAM, Multidimensional Artist Ćetko Ćorluka. Besplatna procena prostora preko skice. Porudžbine u Instagram poruci.' });
+  }
+  renderVals() {
+    const S = window.SL; if (!S || !window.SOURCE_POSTS) return {};
+    const en = S.en, wide = this.state.w >= 900;
+    const motif = this.props.flowerMotif ?? true, rotate = this.props.rotateFlower ?? true;
+    const marks = S.marks || (this.props.showReviewMarks ?? false);
+    const t = en ? {
+      h1: 'Devices for working with life energy', sub: 'Flat, house or office — request a quote.', cta: 'Request a quote', view: 'View products',
+      heroAlt: 'Toroidal field around the Source home device: inflow at the top, outflow at the bottom, core connected to the ground.', statsAria: 'Proof of trust',
+      e1: '01 — Modern problems', h2a: 'Your space has its own microclimate',
+      b1: "While most people fear 5G antennas and the neighbours' routers, few realise that their flat is a separate cell with its own thermodynamics and microclimate, and they forget that the main source of excess potential in their space, as much as 75–85%, is their own Wi-Fi router.",
+      more: 'Read more', emfAlt: 'Cross-section of a home with a router and devices spreading radiation through the space.', ions: '+ positive ions',
+      e2: '02 — Products', h2b: 'Source home and ShAM', allProducts: 'All products',
+      e3: '03 — Space assessment', h2c: 'Space assessment — free sketch',
+      b3: 'Assessment formula: Google Home, Gemini smart devices, 1 router, 2 routers, 1 router + 2 extenders, is your space a duplex? Ceiling height, room volume, and the time you spend in each part of the space during the day. All of this is essential for calculating the load on your space. It lets us work out the cumulative and absorbed radiation in your space, which is also the main way devices affect us through the space.',
+      sketches: 'Sketches', send: 'Send a sketch', how: 'How it works', sketchAlt: 'Floor plan sketch sent for a space assessment',
+      h2isk: 'User experiences', iskLine: 'See user experiences on our Instagram profile, in the Highlights section.', iskLink: 'Instagram highlights',
+      read: 'Read', allPosts: 'All posts',
+      ctaBody: 'Device presentations, brochures, the formula for assessing your space and client experiences: over 100 illustrated pages in the Highlights section of our Instagram profile. Prices and orders via DM.'
+    } : {
+      h1: 'Uredjaji za manipulisanje životnom energijom', sub: 'Stan, kuća ili poslovni prostor - zatražite ponudu.', cta: 'Zatražite ponudu', view: 'Pogledajte proizvode',
+      heroAlt: 'Torusno polje oko uredjaja Source home: ulaz odozgo, izlaz odozdo, jezgro povezano sa zemljom.', statsAria: 'Dokaz poverenja',
+      e1: '01 — Moderni problemi', h2a: 'Vaš prostor ima sopstvenu mikro klimu',
+      b1: 'Dok se većina plaši 5g Antena i komšijski rutera, nije svesna da je njihov stan zasebna ćelija sa sopstvenom termodinamikom i da ima mikro klimu, dok zaboravljaju da je glavni izvor podiznja suvišnog potencijala u njihovom prostoru čak 75 -85% njihov wfi ruter.',
+      more: 'Pročitajte više', emfAlt: 'Presek doma sa ruterom i uredjajima koji šire zračenje kroz prostor.', ions: '+ pozitivni joni',
+      e2: '02 — Proizvodi', h2b: 'Source home i ShAM', allProducts: 'Svi proizvodi',
+      e3: '03 — Procena prostora', h2c: 'Procena prostora — besplatna skica',
+      b3: 'Formula procene - Google home, Gimini smart, 1 ruter, 2 rutera, 1 ruter + 2 extensora, da li je vaš prostor Duplex? Visina plafona, zapremina prostora, vreme koje provedete u delovima prostora u toku dana, sve ovo su  nezaobilazne infomracije za izračunavanje odnosno procenu opterećenosti vašeg prostora, uz pomoć koje dolazimo do kumulativnog i apsorbovanog zračenja u vašem prostoru, to je ujedno i glavni faktor uticaja uredjaja preko prostora na nas.',
+      sketches: 'Skice', send: 'Pošaljite skicu', how: 'Kako funkcioniše', sketchAlt: 'Skica osnove stana poslata za procenu prostora',
+      h2isk: 'Iskustva korisnika', iskLine: 'Iskustva korisnika pogledajte na našem Instagram profilu, u odeljku istaknuto.', iskLink: 'Instagram istaknuto',
+      read: 'Pročitajte', allPosts: 'Svi tekstovi',
+      ctaBody: 'Prezentacija urdjaja, Brošure uredjaja, formula procene vašeg prostora, iskustva klijenata, na profilu u odeljku istaknuto preko 100 ilustrovanih stranica, informacije o ceni i porudžbine u Dm.'
+    };
+    const stats = [
+      { n: 'Tesla', l: en ? 'Exhibition "Art & tehnology", King Peter\'s House, July 2025' : 'Izložba "Art & tehnology", Kuća Kralja Petra, jul 2025' },
+      { n: 'B92', l: en ? '"Horizont stvarnosti", April 2026' : '"Horizont stvarnosti", april 2026' },
+      { n: 'Istočnik', l: en ? 'YouTube interview' : 'Intervju, YouTube' }
+    ];
+    if (marks) stats.unshift({ n: '1000+', l: en ? 'users (July 2025)' : 'korisnika (jul 2025)', note: 'potvrditi' });
+    stats.forEach((x, i) => { x.br = i < stats.length - 1 ? '1px solid rgba(255,255,255,0.3)' : '0'; });
+    const products = ['source-home','sham','paketi','procena','implocell','ether-pill'].map(S.productCard);
+    const sk = ['2025-11-12_11-05-26_UTC_3764182426688435021.jpg','2025-11-12_11-05-40_UTC_3764182517226704975.jpg','2025-11-12_11-06-03_UTC_3764182709745235902.jpg'];
+    const P = window.SOURCE_POSTS;
+    const pick = P.slice().sort((x, y) => y.date.localeCompare(x.date)).slice(0, 3);
+    return {
+      t, marks, sticky: this.props.stickyCta ?? true,
+      h: { products: S.href('Proizvodi.dc.html'), post1: S.href('Blog-post.dc.html', 'slug=wifi-ruter-glavni-izvor'), procena: S.href('Procena-prostora.dc.html'), blog: S.href('Blog.dc.html') },
+      heroFlower: motif ? React.createElement('img', { src: 'img/burst-copper.png', alt: '', style: { position: 'absolute', right: wide ? '-160px' : '-220px', top: wide ? '-120px' : '-180px', width: wide ? '720px' : '520px', opacity: 0.4, pointerEvents: 'none', animation: rotate ? 'spin 120s linear infinite' : 'none' } }) : null,
+      stats, trackRef: this.trackRef, tRef: this.tRef,
+      pauseT: () => { this.pausedT = true; clearTimeout(this.rtT); },
+      resumeT: () => { this.pausedT = false; },
+      resumeTLater: () => { clearTimeout(this.rtT); this.rtT = setTimeout(() => { this.pausedT = false; }, 2500); },
+      testimonialsLoop: (() => { const l = (en ? [
+        ['The space feels calmer, and my mornings are easier than before.', 'user, Belgrade'],
+        ['The device runs quietly and I don\'t notice it, but I notice the difference in the flat.', 'user, Novi Sad'],
+        ['I use ShAM in the evening while I read. It has become part of my routine.', 'user, Niš'],
+        ['The space assessment was detailed and arrived quickly, with clear advice about the router.', 'user, Belgrade'],
+        ['We took the Family bundle for the whole flat. We are happy with it and recommend it.', 'family, Kragujevac']
+      ] : [
+        ['Prostor deluje mirnije, a jutra su mi lakša nego ranije.', 'korisnica, Beograd'],
+        ['Uredjaj radi tiho i ne primećujem ga, ali primećujem razliku u stanu.', 'korisnik, Novi Sad'],
+        ['ShAM koristim uveče dok čitam. Postalo mi je deo rutine.', 'korisnica, Niš'],
+        ['Procena prostora je bila detaljna i stigla je brzo, uz jasne preporuke za ruter.', 'korisnik, Beograd'],
+        ['Family paket smo uzeli za ceo stan. Zadovoljni smo i preporučujemo.', 'porodica, Kragujevac']
+      ]).map(([q, who]) => ({ q, who, note: marks ? 'primer teksta' : '' })); return l.concat(l); })(),
+      productsLoop: products.concat(products),
+      pause: () => { this.paused = true; clearTimeout(this.rt); },
+      resume: () => { this.paused = false; },
+      resumeLater: () => { clearTimeout(this.rt); this.rt = setTimeout(() => { this.paused = false; }, 2500); },
+      sketches: sk.map((f, i) => ({ src: 'img/' + f, alt: t.sketchAlt + ' ' + (i + 1), col: i === 0 ? '1 / -1' : 'auto', ratio: i === 0 ? '16/9' : '4/5', open: (e) => S.lightbox('img/' + f, t.sketchAlt + ' ' + (i + 1), e.currentTarget) })),
+      posts: pick.map(p => ({ cat: (S.CATS.find(c => c.key === p.cat) || {})[en ? 'en' : 'key'] || '', href: S.href('Blog-post.dc.html', 'slug=' + p.slug), title: en ? p.titleEn : p.title, img: p.hero.replace('-g.png', '-w.png'), alt: en ? p.heroAltEn : p.heroAlt, date: S.fmtDate(p.date), ex: en ? p.bodyEn[0] : p.body[0] }))
+    };
+  }
+}
+</script>
+</body>
+</html>

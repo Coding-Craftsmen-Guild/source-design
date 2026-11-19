@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>Tipografija — Source</title>
+<link href="https://fonts.googleapis.com/css2?family=Maven+Pro:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#fff;color:#191b1c;font-family:'Maven Pro',system-ui,sans-serif;font-size:17px;line-height:1.6}
+a{color:#23382f}a:hover{color:#3a5a4b}*{box-sizing:border-box}
+</style>
+</helmet>
+<main style="max-width:1100px;margin:0 auto;padding:56px 16px 96px;display:flex;flex-direction:column;gap:40px">
+  <header style="display:flex;flex-direction:column;gap:10px">
+    <span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.1em;color:#4d5a42">Source · design system</span>
+    <h1 style="margin:0;font-family:'Maven Pro',Arial,sans-serif;font-weight:400;font-size:clamp(36px,calc(2.5vw + 26px),56px);line-height:1.15;letter-spacing:calc(0.08em + 0.6vw);text-transform:uppercase;color:#23382f">Tipografija</h1>
+    <p style="margin:0;max-width:44em;color:#4d5a42">Jedna skala za ceo sajt. Svaka veličina je fluidna: raste od mobilne (390 px) do desktop vrednosti (1200 px i šire). Font je Maven Pro, a meta podaci koriste JetBrains Mono. Vrednosti ispod su izvor za sve stranice.</p>
+  </header>
+  <div style="display:flex;flex-direction:column;border-top:1px solid #c3bfab">
+    <sc-for list="{{ rows }}" as="r" hint-placeholder-count="10">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:12px 32px;padding:28px 0;border-bottom:1px solid #c3bfab;align-items:baseline">
+        <div style="display:flex;flex-direction:column;gap:6px;font-family:'JetBrains Mono',monospace;font-size:12px;color:#4d5a42;line-height:1.6">
+          <span style="font-size:13px;color:#23382f;letter-spacing:0.08em">{{ r.name }}</span>
+          <span>{{ r.use }}</span>
+          <span>mobilni {{ r.m }} · desktop {{ r.d }}</span>
+          <span>{{ r.meta }}</span>
+        </div>
+        <div style="{{ r.css }}">{{ r.sample }}</div>
+      </div>
+    </sc-for>
+  </div>
+</main>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    const M = "font-family:'Maven Pro',Arial,sans-serif;", U = 'text-transform:uppercase;';
+    const rows = [
+      ['Display · H1', 'Naslov banera (sve stranice)', '36 px', '56 px', 'regular 400 · uppercase · razmak 0.08em + 0.6vw · lh 1.15', M + 'font-weight:400;' + U + 'font-size:clamp(36px,calc(2.5vw + 26px),56px);line-height:1.15;letter-spacing:calc(0.08em + 0.6vw);color:#23382f', 'Ćetko Ćorluka'],
+      ['Title · H1 post', 'Naslov blog teksta', '30 px', '44 px', 'regular 400 · uppercase · razmak 0.06em + 0.4vw · lh 1.2', M + 'font-weight:400;' + U + 'font-size:clamp(30px,calc(1.7vw + 23px),44px);line-height:1.2;letter-spacing:calc(0.06em + 0.4vw);color:#23382f', 'Mi nismo baterije'],
+      ['H2 · sekcija', 'SectionTitle komponenta', '28 px', '36 px', 'regular 400 · uppercase · razmak 0.1em + 0.3vw · lh 1.25', M + 'font-weight:400;' + U + 'font-size:clamp(28px,calc(1vw + 24px),36px);line-height:1.25;letter-spacing:calc(0.1em + 0.3vw);color:#23382f', 'Mediji i događaji'],
+      ['H3 · kartica', 'Naslov kartice, medija', '21 px', '24 px', 'regular 400 · uppercase · razmak 0.14em · lh 1.3', M + 'font-weight:400;' + U + 'font-size:clamp(21px,calc(0.4vw + 19.5px),24px);line-height:1.3;letter-spacing:0.14em;color:#23382f', 'Tesla · Art & tehnology'],
+      ['Eyebrow', 'Iznad naslova banera', '13 px', '13 px', 'medium 500 · uppercase · razmak 0.5em', M + 'font-weight:500;' + U + 'font-size:13px;letter-spacing:0.5em;color:#3a5a4b', 'Multidimensional Artist'],
+      ['Lead', 'Tekst ispod H1 na baneru', '18 px', '20 px', 'regular 400 · lh 1.6', M + 'font-size:clamp(18px,calc(0.25vw + 17px),20px);line-height:1.6', 'Stan, kuća ili poslovni prostor - zatražite ponudu.'],
+      ['Body', 'Sav tekst', '17 px', '17 px', 'regular 400 · lh 1.6', M + 'font-size:17px;line-height:1.6', 'Uredjaj koji crpi pozitivne jone iz prostora i ubacuje elektrone u isti.'],
+      ['Small', 'Tekst kartice, napomene', '15 px', '15 px', 'regular 400 · lh 1.55', M + 'font-size:15px;line-height:1.55;color:#4d5a42', 'Navedeni efekti su iskustva korisnika i nisu medicinski dokazani.'],
+      ['Button', 'Dugmad i CTA', '13–14 px', '14 px', 'semibold 600 · uppercase · razmak 0.14em', M + 'font-weight:600;' + U + 'font-size:14px;letter-spacing:0.14em;color:#23382f', 'Zatražite ponudu'],
+      ['Mono · meta', 'Datum, broj sekcije, putanja', '12 px', '12–13 px', 'JetBrains Mono · razmak 0.08em', "font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.08em;color:#4d5a42", '12.06.2025. · 03']
+    ];
+    return { rows: rows.map(([name, use, m, d, meta, css, sample]) => ({ name, use, m, d, meta, css, sample })) };
+  }
+}
+</script>
+</body>
+</html>
